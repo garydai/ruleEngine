@@ -35,4 +35,4 @@ def kmp(s, t):
 	return 0
 
 if __name__ == '__main__':
-	print kmp('abcabcabe', 'abcabe')
+	print kmp('jfkdsahdiojdaigfgthlipjgffg', 'gffg')
