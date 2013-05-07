@@ -6,4 +6,4 @@ title: How Google Works
 
 ##How Google Works
 
-![](/_posts/how-google-works.jpg)
+[一张谷歌搜索如何工作的科普图](http://www.ppcblog.com/how-google-works/)
