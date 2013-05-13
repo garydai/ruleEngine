@@ -37,6 +37,8 @@ observations:{X}
 transition_probility:{
 s:{e:x, m:x, a:x}  
 e:{}...
-}
+}  
+好像错误率挺高，训练不好
+
 ####第三版数学之美
 
