@@ -11,13 +11,16 @@ boost::scoped_ptr
 boost::shared_ptr  
 boost::scoped_array  
 boost::shared_array  
-boost::weak_ptr  boost:: intrusive_ptr
+boost::weak_ptr  
+boost:: intrusive_ptr
 
 ##why
 普通指针缺点:  
 普通指针指向的内存需要手动delete  
 1.	内存被多次delete导致程序crash  
 2.	内存没被delete导致内存泄露  
+
+
 ##how
 
 ##实现
