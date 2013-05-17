@@ -4,7 +4,8 @@ title: C++ 智能指针
 
 ---
 
-##what
+##C++智能指针
+###what
 是个对象,不是数据类型,对象里有个普通指针和内存被引用个数	
 std::auto_ptr  
 boost::scoped_ptr  
@@ -14,16 +15,16 @@ boost::shared_array
 boost::weak_ptr  
 boost:: intrusive_ptr
 
-##why
+###why
 普通指针缺点:  
 普通指针指向的内存需要手动delete  
 1.	内存被多次delete导致程序crash  
 2.	内存没被delete导致内存泄露  
 
 
-##how
+###how
 
-##实现
+###实现
 
 	class ptr
 	{
@@ -74,4 +75,19 @@ boost:: intrusive_ptr
 		ptr pointer;
 		/* data */
 	};
+###boost::shared_ptr 
+boost智能指针的引用计数也是个类，count赋值操作如下  
 
+	shared_count & operator= (shared_count const & r) // nothrow
+	{
+	    sp_counted_base * tmp = r.pi_;
+	
+	    if( tmp != pi_ )
+	    {
+	        if( tmp != 0 ) tmp->add_ref_copy();
+	        if( pi_ != 0 ) pi_->release();
+	        pi_ = tmp;
+	    }
+	
+	    return *this;
+	}
