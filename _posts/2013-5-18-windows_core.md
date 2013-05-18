@@ -15,7 +15,7 @@ title: windows核心编程笔记
 ###线程
 线程负责执行进程地址空间中的代码，也有两部分组成,**线程内核对象**与**栈**.每个线程拥有属于自己的cpu寄存器和栈。多线程共享同一进程的内存空间与内核对象句柄表.    
 新线程可以访问进程内核对象的所有句柄\进程内所有内存\其他线程的栈  
-线程内核对象结构堆栈指针寄存器(SP)指向由创建线程时传入的两个参数函数入口地址和函数参数.指令寄存器(IP)指向RtlUserTreadStart函数.  
+线程内核对象结构堆栈指针寄存器(SP)指向由创建线程时传入的两个参数函数入口地址和函数参数.指令寄存器(IP)指向RtlUserTreadStart函数.   
 
 	VOID RtlUserThreadStart(PTHREAD_START_ROUTINE pfnStartAddr, PVOID pvParam){	
 		__try{
@@ -24,6 +24,8 @@ title: windows核心编程笔记
 		__except(UnhandledExceptionFiler(GetExceptionInformation())){
 			ExitProcess(GetExceptionCode());
 		}
-	}
+	}  
+
+
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/windows_thread.PNG)
     
