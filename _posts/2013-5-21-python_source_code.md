@@ -92,6 +92,7 @@ title: python对象机制
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/python_object.PNG)
 
 ###整数对象
+整数对象是不可变对象(mutable)，即对象内部的值不能被改变，i = i + 1，两个i不是同一个对象，会创建新的i对象。  
 Python维护一个整数对象池，当删除整数对象时，不会回收内存，而把该内存归还给对象池。  
 对于小整数([-5,100])，在解释器初始化的时候已经在对象池中创建了全部小整数对象。  
 ####数据结构
