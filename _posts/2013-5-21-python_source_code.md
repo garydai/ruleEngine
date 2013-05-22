@@ -90,7 +90,22 @@ title: python对象机制
 
 5.Python对象的分类  
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/python_object.PNG)
-  
+
+###整数对象
+Python维护一个整数对象池，当删除整数对象时，不会回收内存，而把该内存归还给对象池。  
+对于小整数([-5,100])，在解释器初始化的时候已经在对象池中创建了全部小整数对象。  
+####数据结构
+	#define BLOCK_SIZE  1000    /* 1K less typical malloc overhead */
+	#define BHEAD_SIZE  8   /* Enough for a 64-bit pointer */
+	#define N_INTOBJECTS    ((BLOCK_SIZE - BHEAD_SIZE) / sizeof(PyIntObject))
+
+	struct _intblock {
+	    struct _intblock *next;
+	    PyIntObject objects[N_INTOBJECTS];
+	};
+
+sizeof(PyIntObject) 4字节引用计数，4字节类型对象指针，4字节整数值.  
+所以一个block里有82个整数对象，block_list链表链接不同block，还有空闲链表链接空闲的整数对象。
 
 
 
