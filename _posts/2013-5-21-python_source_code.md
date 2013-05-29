@@ -111,6 +111,22 @@ sizeof(PyIntObject) 4字节引用计数，4字节类型对象指针，4字节整
 字符串对象也是一个不可变对象，所以连接两个字符串的加法操作都会创建一个新的对象，效率较低.   
 如果连接很多个字符，则需要创建N多次对象，但可以使用字符串对象的join操作来连接多个字符串，该函数首先计算多个字符串的总字节数，申请总字节数的内存，减少申请内存次数。  
 当然该多个字符串存放在list或其他容器里。  
+###列表对象
+变长且可变对象   
+
+	typedef struct {
+	
+	    PyObject_VAR_HEAD
+	
+	    /* Vector of pointers to list elements.  list[0] is ob_item[0], etc. */
+	
+	    PyObject **ob_item;
+	
+	    int allocated;
+	
+	} PyListObject;
+
+PyObject_VAR_HEAD里的ob_size表示列表元素个数，allocated表示初始化对象申请的内存大小。与C++里的vector实现机制相似。
 
 
 
