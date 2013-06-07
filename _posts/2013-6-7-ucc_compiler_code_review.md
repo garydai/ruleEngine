@@ -125,7 +125,7 @@ token表
 ###语法解析
 语法解析与词法分析一起执行，取一个token然后解析。  
 
-	ParseTranslationUnit
+	transUnit = ParseTranslationUnit(file);
 
 	ast树结构
 	#define AST_NODE_COMMON   \
@@ -137,4 +137,7 @@ token表
 	{
 		AST_NODE_COMMON
 		AstNode extDecls;
-	};	
+	};
+
+###语义分析	
+	CheckTranslationUnit(transUnit);
