@@ -4,6 +4,7 @@ title: 25本免费的Python电子书
 
 ---
 
+
 ##25本免费的Python电子书
 1.[Think Stats](http://greenteapress.com/thinkstats/html/index.html)		        
 2.[Dive Into Python](http://www.diveintopython.net/toc/index.html)    
@@ -29,4 +30,6 @@ title: 25本免费的Python电子书
 22.[Python 101 (an introduction to python)](http://cutter.rexx.com/~dkuhlman/python_101/python_101.html)  
 23.[How To Think Like A Computer Scientist](http://www.greenteapress.com/thinkpython/thinkCSpy/thinkCSpy.pdf)  
 24.[Natural Language Processing With Python](https://sites.google.com/site/naturallanguagetoolkit/book)  
-25.[Programming Computer Vision With Python](http://programmingcomputervision.com/downloads/Draft_20120318.pdf)  
+25.[Programming Computer Vision With Python](http://programmingcomputervision.com/downloads/Draft_20120318.pdf)      
+##Python免费书籍汇总
+[http://pythonbooks.revolunet.com/](http://pythonbooks.revolunet.com/)
