@@ -5,6 +5,8 @@ title: 一款开源C语言编译器源码解析
 ---
 
 ##一款开源C语言编译器源码解析
+###预编译
+
 ###词法分析 lex.c	
 token表	 
 
@@ -125,14 +127,42 @@ token表
 ###语法解析
 语法解析与词法分析一起执行，取一个token然后解析。  
 
+	Decl.c
 	transUnit = ParseTranslationUnit(file);
 
-	ast树结构
+####语法树
+	typedef struct astNode
+	{
+		AST_NODE_COMMON
+	} *AstNode;
+
+	ast节点结构
 	#define AST_NODE_COMMON   \
-	    int kind;             \
+	    int kind;             \节点类型
 	    struct astNode *next; \
 	    struct coord coord;
 
+	节点类型
+	enum nodeKind 
+	{ 
+		NK_TranslationUnit,     NK_Function,           NK_Declaration,
+		NK_TypeName,            NK_Specifiers,         NK_Token,				
+		NK_TypedefName,         NK_EnumSpecifier,      NK_Enumerator,			
+		NK_StructSpecifier,     NK_UnionSpecifier,     NK_StructDeclaration,	
+		NK_StructDeclarator,    NK_PointerDeclarator,  NK_ArrayDeclarator,		
+		NK_FunctionDeclarator,  NK_ParameterTypeList,  NK_ParameterDeclaration,
+		NK_NameDeclarator,      NK_InitDeclarator,     NK_Initializer,
+		
+		NK_Expression,
+	
+		NK_ExpressionStatement, NK_LabelStatement,     NK_CaseStatement,		
+		NK_DefaultStatement,    NK_IfStatement,        NK_SwitchStatement,		
+		NK_WhileStatement,      NK_DoStatement,        NK_ForStatement,		
+		NK_GotoStatement,       NK_BreakStatement,     NK_ContinueStatement,		
+		NK_ReturnStatement,     NK_CompoundStatement
+	};
+
+	编译单元cpp
 	struct astTranslationUnit
 	{
 		AST_NODE_COMMON
