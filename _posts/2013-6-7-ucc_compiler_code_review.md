@@ -125,7 +125,9 @@ token表
 
 
 ###语法解析
-语法解析与词法分析一起执行，取一个token然后解析。  
+语法解析与词法分析一起执行，取一个token然后解析。 
+
+将整个cpp，解析成一个语法树。 
 
 	Decl.c
 	transUnit = ParseTranslationUnit(file);
@@ -170,4 +172,9 @@ token表
 	};
 
 ###语义分析	
+
 	CheckTranslationUnit(transUnit);
+
+####声明语义检查
+####表达式语义检查
+####语句语义检查
