@@ -20,7 +20,7 @@ TLB是页表条目的缓存
 
 i7地址翻译图
 
-![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/address_treanslate.JPG)  
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/address_translate.JPG)  
 
 
 
