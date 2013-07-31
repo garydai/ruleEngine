@@ -18,5 +18,9 @@ MMU通过存放在内存或者高速缓存的页表，把CPU传进来的虚拟�
 
 TLB是页表条目的缓存
 
+i7地址翻译图
+
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/address_treanslate.JPG)  
+
 
 
