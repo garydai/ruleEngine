@@ -132,6 +132,21 @@ token表
 	Decl.c
 	transUnit = ParseTranslationUnit(file);
 
+####语法解析程序结构
+
+	ParseTranslationUnit
+
+		ParseExternalDeclaration//解析外部声明
+
+			ParseCommonHeader//各种声明的共同部分
+
+				ParseDeclarationSpecifiers//处理类型限定符(const)、说明符(int)、存储地说明符(auto)
+
+				ParseInitDeclarator
+
+			ParseCompoundStatement//如果是函数定义，解析函数的实现
+
+
 ####语法树
 	typedef struct astNode
 	{
