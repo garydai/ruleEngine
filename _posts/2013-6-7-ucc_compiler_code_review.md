@@ -147,6 +147,10 @@ token表
 					ParseDeclarator
 
 					ParsePostfixDeclarator
+	
+						ParseDirectDeclarator
+
+			GetFunctionDeclarator
 
 			ParseCompoundStatement//如果是函数定义，解析函数的实现、
 
@@ -182,6 +186,26 @@ token表
 
 					ParseExpressionStatement										
 
+####解析表达式
+	
+
+	ParseExpression
+
+	/**
+	 *  assignment-expression:
+	 *      conditional-expression
+ 
+	 *      unary-expression assignment-operator assignment-expression
+	 *  assignment-operator:
+	 *      = *= /= %= += -= <<= >>= &= ^= |=
+	 *  There is a little twist here: the parser always treats the first nonterminal
+	 *  as a conditional expression.
+	 */	
+		ParseAssignmentExpression
+
+			ParseConditionalExpression
+
+			ParseAssignmentExpression
 
 ####语法树
 	typedef struct astNode
