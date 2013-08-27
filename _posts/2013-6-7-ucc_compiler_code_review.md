@@ -144,7 +144,43 @@ token表
 
 				ParseInitDeclarator
 
-			ParseCompoundStatement//如果是函数定义，解析函数的实现
+					ParseDeclarator
+
+					ParsePostfixDeclarator
+
+			ParseCompoundStatement//如果是函数定义，解析函数的实现、
+
+				ParseDeclaration
+
+				ParseStatement
+
+					ParseLabelStatement
+
+					ParseCaseStatement
+
+					ParseDefaultStatement
+
+					ParseIfStatement
+
+					ParseSwitchStatement
+
+					ParseWhileStatement
+
+					ParseDoStatement
+
+					ParseForStatement
+
+					ParseGotoStatement
+
+					ParseContinueStatement
+
+					ParseBreakStatement
+
+					ParseReturnStatement
+
+					ParseCompoundStatement
+
+					ParseExpressionStatement										
 
 
 ####语法树
@@ -190,6 +226,8 @@ token表
 
 	CheckTranslationUnit(transUnit);
 
-####声明语义检查
-####表达式语义检查
-####语句语义检查
+####语法解析程序结构
+
+	CheckFunction
+	
+	CheckGlobalDeclaration
