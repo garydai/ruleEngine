@@ -1,6 +1,6 @@
 ---
 layout: default
-title: windows用于模式下线程同步
+title: windows线程同步
 
 ---
 ##windows线程同步  
