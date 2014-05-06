@@ -15,3 +15,14 @@ http://wiki.musicbrainz.org/AudioFingerprint
 
 ###Chromaprint
 Chromaprint, the input audio is converted to the sampling rate 11025 Hz and the frame size is 4096 (0.371 s) with 2/3 overlap.
+
+chroma is simply the fractional part of the base-2 logarithm of frequency.
+
+chroma spectrum, , to be a measure of the
+strength of a signal with respect to a given value of chroma
+
+The algorithm consists of ﬁve steps: frame segmentation, feature calculation, correlation calculation, correlation ﬁltering, and thumbnail selection
+
+1.生成频谱图chromagram
+
+2.基于图像的对比
