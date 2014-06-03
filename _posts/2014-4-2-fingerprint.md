@@ -25,4 +25,15 @@ The algorithm consists of ﬁve steps: frame segmentation, feature calculation, 
 
 1.生成频谱图chromagram
 
+
+		static const int NUM_BANDS = 12;
+
+		inline double FreqToOctave(double freq, double base = 440.0 / 16.0)
+		{
+			return log(freq / base) / log(2.0);
+		}
+		double octave = FreqToOctave(freq);
+		double note = NUM_BANDS * (octave - floor(octave)); 
+		
+
 2.基于图像的对比
