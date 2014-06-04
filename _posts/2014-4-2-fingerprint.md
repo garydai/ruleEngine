@@ -13,7 +13,8 @@ http://wiki.musicbrainz.org/AudioFingerprint
 
 ###echoprint
 
-###Chromaprint
+###chromaprint
+
 Chromaprint, the input audio is converted to the sampling rate 11025 Hz and the frame size is 4096 (0.371 s) with 2/3 overlap.
 
 chroma is simply the fractional part of the base-2 logarithm of frequency.
@@ -25,7 +26,12 @@ The algorithm consists of ﬁve steps: frame segmentation, feature calculation, 
 
 1.生成频谱图chromagram
 
+1.1	对一帧4096个采样点做FFT，取28到2046HZ的信号幅度。
 
+1.2	预处理，28到2046HZ转化成chroma
+
+    c = log2(f) - [log2(f)]
+	
 		static const int NUM_BANDS = 12;
 
 		inline double FreqToOctave(double freq, double base = 440.0 / 16.0)
@@ -34,6 +40,10 @@ The algorithm consists of ﬁve steps: frame segmentation, feature calculation, 
 		}
 		double octave = FreqToOctave(freq);
 		double note = NUM_BANDS * (octave - floor(octave)); 
-		
 
-2.基于图像的对比
+		
+2.chroma filter
+
+3.chroma Normalizer
+
+4.基于图像的对比
