@@ -44,6 +44,12 @@ The algorithm consists of ﬁve steps: frame segmentation, feature calculation, 
 		
 2.chroma filter
 
+加权当前帧与后4帧信号幅度
+
+ { 0.25, 0.75, 1.0, 0.75, 0.25 }
+
 3.chroma Normalizer
+
+对12个chroma的信号幅度做归一化处理
 
 4.基于图像的对比
