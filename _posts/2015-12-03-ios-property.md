@@ -1,7 +1,7 @@
 ---
 layout: default
 
-title:ios-@property
+title:ios property
 
 ---
 
