@@ -65,6 +65,84 @@ twisted框架有使用该模式
 
 多个观察者对象监听某对象，当该对象状态发生变化，则会通知所有观察者。
 
+		public abstract class Subject {
+		    /**
+		     * 用来保存注册的观察者对象
+		     */
+		    private    List<Observer> list = new ArrayList<Observer>();
+		    /**
+		     * 注册观察者对象
+		     * @param observer    观察者对象
+		     */
+		    public void attach(Observer observer){
+		        
+		        list.add(observer);
+		        System.out.println("Attached an observer");
+		    }
+		    /**
+		     * 删除观察者对象
+		     * @param observer    观察者对象
+		     */
+		    public void detach(Observer observer){
+		        
+		        list.remove(observer);
+		    }
+		    /**
+		     * 通知所有注册的观察者对象
+		     */
+		    public void nodifyObservers(String newState){
+		        
+		        for(Observer observer : list){
+		            observer.update(newState);
+		        }
+		    }
+		}
+		
+		
+		
+		public class ConcreteSubject extends Subject{
+		    
+		    private String state;
+		    
+		    public String getState() {
+		        return state;
+		    }
+		
+		    public void change(String newState){
+		        state = newState;
+		        System.out.println("主题状态为：" + state);
+		        //状态发生改变，通知各个观察者
+		        this.nodifyObservers(state);
+		    }
+		}
+
+
+		public interface Observer {
+		    /**
+		     * 更新接口
+		     * @param state    更新的状态
+		     */
+		    public void update(String state);
+		}
+
+		public class ConcreteObserver implements Observer {
+		    //观察者的状态
+		    private String observerState;
+		    
+		    @Override
+		    public void update(String state) {
+		        /**
+		         * 更新观察者的状态，使其与目标的状态保持一致
+		         */
+		        observerState = state;
+		        System.out.println("状态为："+observerState);
+		    }
+		
+		}
+
+
+观察类放入被观察类中，被观察类发生改变通知观察类做出反应
+
 16.迭代子模式
 
 迭代器iterator
