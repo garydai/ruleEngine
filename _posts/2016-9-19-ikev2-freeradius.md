@@ -102,6 +102,7 @@ title: centos安装搭建ikev2+freeradius
 	修改配置文件
 	vi /etc/raddb/mods-available/sql
 	找到driver="rlm_sql_null" 修改为 rlm_sql_mysql 
+	dialect="sqlite"改为mysql
 	
 	
 	radiusd start
