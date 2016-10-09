@@ -9,14 +9,23 @@ title: centos安装搭建ikev2+freeradius
 
 ###安装 strongSwan
 
+	wget https://download.strongswan.org/strongswan-5.5.0.tar.bz2
 需要下载源文件，enable radius，编译
 	
+		yum install gcc
+		yum install gmp-devel
+		
+		centos7 yum instlal mysql-server 失败，需要加入
+		sudo rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+		yum install mysql
+		
 		./configure --prefix=/usr --sysconfdir=/etc/strongswan  --enable-xauth-eap --enable-openssl --enable-ext-auth --enable-nat-transport --enable-sql --enable-mysql  --enable-shared --enable-md4 --enable-eap-mschapv2 --enable-eap-aka --enable-eap-aka-3gpp2 --enable-eap-gtc --enable-eap-identity  --enable-eap-md5 --enable-eap-peap --enable-eap-radius --enable-eap-sim --enable-eap-sim-file --enable-eap-simaka-pseudonym --enable-eap-simaka-reauth --enable-eap-simaka-sql --enable-eap-tls --enable-eap-tnc --enable-eap-ttls
 		make
 		make install
 	
 ###生成证书
 同上篇博文
+	strongswan命令改为ipsec
 	
 ###配置 vpn
 	vi /etc/strongswan/ipsec.conf
