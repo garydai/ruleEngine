@@ -100,6 +100,36 @@ http://www.cnblogs.com/dolphinX/p/3286177.html
 
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/javascript-prototype.png)
 
+###this
+
+1.作为函数调用，this指全局对象
+
+		var x = 1;
+		function test(){
+	　　　　alert(this.x);
+	　　}
+		test(); // 1
+　　
+
+2.作为对象方法的调用，this指对象
+
+	　function test(){
+	　　　　alert(this.x);
+	　　}
+	　　var o = {};
+	　　o.x = 1;
+	　　o.m = test;
+	　　o.m(); // 1
+　　
+3.作为构造函数调用
+
+	　　function test(){
+	　　　　this.x = 1;
+	　　}
+	　　var o = new test();
+	　　alert(o.x); // 1
+
+
 ###双向绑定
 
 
