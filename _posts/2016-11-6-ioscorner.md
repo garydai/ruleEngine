@@ -5,7 +5,7 @@ title: ios 圆角
 
 ---
 
-##ios性能优化
+## ios性能优化
 
 
 很多 CPU 的操作都会延迟 GPU 开始渲染的时间：
@@ -19,16 +19,16 @@ title: ios 圆角
 
 ASDK 对于绘制过程的优化有三部分：分别是栅格化子视图、绘制图像以及绘制文字。
 
-###查看性能工具
+### 查看性能工具
 使用Core Animation工具
-###图层混合
+### 图层混合
 
 color a值不要设，设置背景色
-###慎用离屏渲染
-####ios圆角性能优化
+### 慎用离屏渲染
+#### ios圆角性能优化
 
 
-###AsyncDisplayKit
+### AsyncDisplayKit
 	对应表
 	UIKit				AsyncDisplayKit
 	UIView				ASDisplayNode
