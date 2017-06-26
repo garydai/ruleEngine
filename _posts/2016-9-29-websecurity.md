@@ -5,9 +5,9 @@ title: web安全
 
 ---
 
-##web安全
+## web安全
 
-###PHP安全函数
+### PHP安全函数
 	
 1.addslashes
 
@@ -40,6 +40,9 @@ strip_tags会过滤掉NUL，HTML和PHP的标签。
 
 
 
+### SQL注入
+
+http://www.techug.com/post/sql-injection-attacks-by-example.html
 
     
 
