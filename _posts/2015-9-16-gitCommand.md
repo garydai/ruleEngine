@@ -112,3 +112,4 @@ git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
 	
 	git revert	文件层面	（然而并没有）
 
+	git push origin test:master         // 提交本地test分支作为远程的master分支 //好像只写这一句，远程的github就会自动创建一个test分支
