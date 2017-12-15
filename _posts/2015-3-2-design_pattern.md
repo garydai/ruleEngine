@@ -49,6 +49,45 @@ twisted框架有使用该模式
 
 委托人声明协议方法，代理人需要实现该协议的方法。
 
+
+	abstract class Subject
+	{
+	    public abstract void Request();
+	}
+
+
+	class RealSubject : Subject  
+	{  
+	    public override void Request()  
+	    {  
+	        //业务方法具体实现代码  
+	    }  
+	}  
+	
+	class Proxy : Subject
+	{
+	    private RealSubject realSubject = new RealSubject(); //维持一个对真实主题对象的引用
+	
+	    public void PreRequest() 
+	    {
+	        …...
+	    }
+	
+	    public override void Request() 
+	    {
+	        PreRequest();
+	        realSubject.Request(); //调用真实主题对象的方法
+	         PostRequest();
+	    }
+	
+	    public void PostRequest() 
+	    {
+	        ……
+	    }
+	}
+
+	代理类和被代理类继承同一个接口
+
 9.外观模式
 
 组合各种类
@@ -62,8 +101,49 @@ twisted框架有使用该模式
 12.享元模式
 
 13.策略模式
+	
+	 interface IStrategy {
+	        public void doSomething();
+	    }
+	    class ConcreteStrategy1 implements IStrategy {
+	        public void doSomething() {
+	            System.out.println("具体策略1");
+	        }
+	    }
+	    class ConcreteStrategy2 implements IStrategy {
+	        public void doSomething() {
+	            System.out.println("具体策略2");
+	        }
+	    }
+	    class Context {
+	        private IStrategy strategy;
+	
+	        public Context(IStrategy strategy){
+	            this.strategy = strategy;
+	        }
+	
+	        public void execute(){
+	            strategy.doSomething();
+	        }
+	    }
+	
+	    public class Client {
+	        public static void main(String[] args){
+	            Context context;
+	            System.out.println("-----执行策略1-----");
+	            context = new Context(new ConcreteStrategy1());
+	            context.execute();
+	
+	            System.out.println("-----执行策略2-----");
+	            context = new Context(new ConcreteStrategy2());
+	            context.execute();
+	        }
+	    }
+	    
 
 14.模板方法模式
+
+父类定义逻辑顺序，子类实现具体逻辑
 
 15.观察者模式
 
@@ -169,4 +249,90 @@ twisted框架有使用该模式
 
 23.解释器模式
 
+24.装饰器模式
 
+咖啡是一种饮料，咖啡的本质是咖啡豆+水磨出来的。咖啡店现在要卖各种口味的咖啡，如果不使用装饰模式，那么在销售系统中，各种不一样的咖啡都要产生一个类，如果有4中咖啡豆，5种口味，那么将要产生至少20个类（不包括混合口味），非常麻烦。使用了装饰模式，只需要11个类即可生产任意口味咖啡（包括混合口味
+
+	
+		public abstract class AbstractCellPhone
+		{
+		        public abstract string CallNumber();
+		        public abstract string SendMessage();
+		}
+		
+		public class NokiaPhone : AbstractCellPhone
+	   {
+	        public override string CallNumber()
+	        {
+	            return "NokiaPhone call sombody";
+	        }
+	 
+	        public override string SendMessage()
+	        {
+	            return "NokiaPhone send a message to somebody";
+	        }
+	   }
+   
+   
+	   public abstract class Decorator:AbstractCellPhone
+	    {
+	        AbstractCellPhone _phone;
+	 
+	        public Decorator(AbstractCellPhone phone)
+	        {
+	            _phone = phone;
+	        }
+	 
+	        public override string CallNumber()
+	        {
+	            return _phone.CallNumber();
+	        }
+	 
+	        public override string SendMessage()
+	        {
+	            return _phone.SendMessage();
+	        }
+	  }
+	  
+	  
+		  
+		  public class DecoratorGPS : Decorator
+	    {
+	        public DecoratorGPS(AbstractCellPhone phone)
+	            : base(phone)
+	        { }
+	 
+	        public override string CallNumber()
+	        {
+	            return base.CallNumber() + " with GPS";
+	        }
+	 
+	        public override string SendMessage()
+	        {
+	            return base.SendMessage() + " with GPS";
+	        }
+	    }
+	 
+	    public class DecoratorBlueTooth : Decorator
+	    {
+	        public DecoratorBlueTooth(AbstractCellPhone phone)
+	            : base(phone)
+	        { }
+	 
+	        public override string CallNumber()
+	        {
+	            return base.CallNumber() + " with BlueTooth";
+	        }
+	 
+	        public override string SendMessage()
+	        {
+	            return base.SendMessage() + " with BlueTooth";
+	        }
+	 }
+	 
+	  
+	  给手机加上gps等装饰
+  
+  	
+    
+    
