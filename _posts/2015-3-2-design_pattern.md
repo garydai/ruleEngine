@@ -241,9 +241,138 @@ twisted框架有使用该模式
 
 20.状态模式
 
+	public interface State {
+   		public void doAction(Context context);
+	}
+	
+	public class StartState implements State {
+	
+	   public void doAction(Context context) {
+	      System.out.println("Player is in start state");
+	      context.setState(this);    
+	   }
+	
+	   public String toString(){
+	      return "Start State";
+	   }
+	}
+	
+	public class StopState implements State {
+
+	   public void doAction(Context context) {
+	      System.out.println("Player is in stop state");
+	      context.setState(this);    
+	   }
+	
+	   public String toString(){
+	      return "Stop State";
+	   }
+	}
+	
+	
+	public class Context {
+	   private State state;
+	
+	   public Context(){
+	      state = null;
+	   }
+	
+	   public void setState(State state){
+	      this.state = state;        
+	   }
+	
+	   public State getState(){
+	      return state;
+	   }
+	}
+	
+
+	public class StatePatternDemo {
+	   public static void main(String[] args) {
+	      Context context = new Context();
+	
+	      StartState startState = new StartState();
+	      startState.doAction(context);
+	
+	      System.out.println(context.getState().toString());
+	
+	      StopState stopState = new StopState();
+	      stopState.doAction(context);
+	
+	      System.out.println(context.getState().toString());
+	   }
+	}
+
+
+
 21.访问者模式
 
 数据和操作解耦
+
+	abstract class Element {  
+	    public abstract void accept(IVisitor visitor);  
+	    public abstract void doSomething();  
+	}  
+	  
+	interface IVisitor {  
+	    public void visit(ConcreteElement1 el1);  
+	    public void visit(ConcreteElement2 el2);  
+	}  
+	  
+	class ConcreteElement1 extends Element {  
+	    public void doSomething(){  
+	        System.out.println("这是元素1");  
+	    }  
+	      
+	    public void accept(IVisitor visitor) {  
+	        visitor.visit(this);  
+	    }  
+	}  
+	  
+	class ConcreteElement2 extends Element {  
+	    public void doSomething(){  
+	        System.out.println("这是元素2");  
+	    }  
+	      
+	    public void accept(IVisitor visitor) {  
+	        visitor.visit(this);  
+	    }  
+	}  
+	class Visitor implements IVisitor {  
+	  
+	    public void visit(ConcreteElement1 el1) {  
+	        el1.doSomething();  
+	    }  
+	      
+	    public void visit(ConcreteElement2 el2) {  
+	        el2.doSomething();  
+	    }  
+	}  
+	  
+	class ObjectStruture {  
+	    public static List<Element> getList(){  
+	        List<Element> list = new ArrayList<Element>();  
+	        Random ran = new Random();  
+	        for(int i=0; i<10; i++){  
+	            int a = ran.nextInt(100);  
+	            if(a>50){  
+	                list.add(new ConcreteElement1());  
+	            }else{  
+	                list.add(new ConcreteElement2());  
+	            }  
+	        }  
+	        return list;  
+	    }  
+	}  
+	  
+	public class Client {  
+	    public static void main(String[] args){  
+	        List<Element> list = ObjectStruture.getList();  
+	        for(Element e: list){  
+	            e.accept(new Visitor());  
+	        }  
+	    }  
+	}  
 
 22.中介者模式
 
