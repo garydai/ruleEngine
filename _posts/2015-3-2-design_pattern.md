@@ -29,11 +29,77 @@ twisted框架有使用该模式
 
 工厂方法模式：创建抽象工厂类，具体工厂类，实例化具体工厂，创建产品
 
+	// abstract factory
+	abstract class Kitchen {
+	  public abstract KitchenMeal getMeal(String preferency);
+	  public abstract KitchenMeal getDessert(String preferency);
+	}
+	
+	// concrete factory
+	class KitchenFactory extends Kitchen {
+	  @Override
+	  public KitchenMeal getMeal(String preferency) {
+	    if (preferency.equals("F.1")) {
+	      return new FastFoodMeal();
+	    } else if (preferency.equals("P.1")) {
+	      return new ProteinMeal();
+	    }
+	    return new VegetarianMeal();
+	  }
+	 
+	  @Override
+	  public KitchenMeal getDessert(String preferency) {
+	    if (preferency.equals("I.1")) {
+	      return new IceCreamMeal();
+	    }
+	    return null;
+	  }
+	}
+	 
+	// abstract product
+	abstract class KitchenMeal {
+	  public abstract String getName();
+	}
+	 
+	// concrete products
+	class ProteinMeal extends KitchenMeal {
+	  @Override
+	  public String getName() {
+	    return "protein meal";
+	  }
+	}
+
+
 4.单例模式
 
 5.建造者模式
 
 工厂模式创建一个产品，建造者模式创建多个产品合为一起
+
+		class Programmer {
+		  private String firstName;
+		  private String lastName;
+		   
+		  private Programmer(String fName, String lName) {
+		    this.firstName = fName;
+		    this.lastName = lName;
+		  }
+		   
+		  public static class ProgrammerBuilder {
+		    private String firstName;
+		    private String lastName;
+		     
+		    public ProgrammerBuilder setFirstName(String firstName) {
+		      this.firstName = firstName;
+		      return this;
+		    }
+		     
+		    public ProgrammerBuilder setLastName(String lastName) {
+		      this.lastName = lastName;
+		      return this;
+		    }		     
+		}
+
 
 6.原型模式
 
@@ -377,6 +443,17 @@ twisted框架有使用该模式
 22.中介者模式
 
 23.解释器模式
+	
+	abstract class AbstractExpression {
+	       public  abstract void interpret(Context ctx);
+	}
+	
+	class TerminalExpression extends  AbstractExpression {
+       public  void interpret(Context ctx) {
+              //终结符表达式的解释操作
+       }
+	}
+
 
 24.装饰器模式
 
