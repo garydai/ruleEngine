@@ -40,47 +40,47 @@
           :props="defaultProps">
         </el-tree>
       </div>      
-      <el-dialog :visible.sync="dialogFormVisible">
-        <el-form :model="form" ref="ruleForm" label-width="180px" class="demo-ruleForm">
-          <el-form-item label="如果命中该drl，则运行" prop="variable">
-            <el-select v-model="form.hit" placeholder="请选择规则集" clearable>
-              <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id"></el-option>
-            </el-select>
-            或
-            <el-select v-model="form.hitAction" placeholder="请选择策略" clearable>
-              <el-option v-for="t in Object.keys(actionMap)" :key="t" :label="actionMap[t]" :value="t"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="否则，运行" prop="variable">
-            <el-select v-model="form.nothit" placeholder="请选择规则集" clearable>
-              <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id"></el-option>
-            </el-select>
-            或
-            <el-select v-model="form.nothitAction" placeholder="请选择策略" clearable>
-              <el-option v-for="t in Object.keys(actionMap)" :key="t" :label="actionMap[t]" :value="t"></el-option>
-            </el-select> 
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取消</el-button>
-          <el-button type="primary" @click="addChild()">保存</el-button>
-        </div>
-      </el-dialog>
-      <el-dialog :visible.sync="flowVisible">
-        <el-form :model="flow" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-          <el-form-item label="新流程" prop="variable">
-            <el-select v-model="flow.id" placeholder="请选择规则集" clearable>
-              <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id">
-              </el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="flowVisible = false">取消</el-button>
-          <el-button type="primary" @click="addFlowSave()">保存</el-button>
-        </div>
-      </el-dialog>
     </el-card>
+    <el-dialog :visible.sync="dialogFormVisible">
+      <el-form :model="form" ref="ruleForm" label-width="180px" class="demo-ruleForm">
+        <el-form-item label="如果命中该drl，则运行" prop="variable">
+          <el-select v-model="form.hit" placeholder="请选择规则集" clearable>
+            <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id"></el-option>
+          </el-select>
+          或
+          <el-select v-model="form.hitAction" placeholder="请选择策略" clearable>
+            <el-option v-for="t in Object.keys(actionMap)" :key="t" :label="actionMap[t]" :value="t"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="否则，运行" prop="variable">
+          <el-select v-model="form.nothit" placeholder="请选择规则集" clearable>
+            <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id"></el-option>
+          </el-select>
+          或
+          <el-select v-model="form.nothitAction" placeholder="请选择策略" clearable>
+            <el-option v-for="t in Object.keys(actionMap)" :key="t" :label="actionMap[t]" :value="t"></el-option>
+          </el-select> 
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取消</el-button>
+        <el-button type="primary" @click="addChild()">保存</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog :visible.sync="flowVisible">
+      <el-form :model="flow" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="新流程" prop="variable">
+          <el-select v-model="flow.id" placeholder="请选择规则集" clearable>
+            <el-option v-for="t in list" :key="t.id" :label="t.name" :value="t.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="flowVisible = false">取消</el-button>
+        <el-button type="primary" @click="addFlowSave()">保存</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -164,7 +164,7 @@ export default {
     renderContent(h, { node, data, store }) {
       return (
         <span class='custom-tree-node'>
-          <span>{store.props.nodeMap[data.type][data.label] + '-' + data.label}</span>
+          <span>{store.props.nodeMap[data.type][data.label]}</span>
           <span>
             <el-button size='mini' type='text' on-click={ () => this.append(data) }>增加子流程</el-button>
             <el-button size='mini' type='text' on-click={ () => this.remove(node, data) }>删除该流程</el-button>
