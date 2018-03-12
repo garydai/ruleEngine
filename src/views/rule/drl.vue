@@ -1,12 +1,14 @@
 <template>
   <div class="dashboard-container">
-    <el-button type="primary" size="small" @click="handleAddRule()">增加规则</el-button>
-    <el-button type="primary" size="small" @click="handleUpdateRule()">提交修改</el-button>
+    <div class="fixed-div">
+      <el-button type="primary" size="small" @click="handleAddRule()">增加规则</el-button>
+      <el-button type="primary" size="small" @click="handleUpdateRule()">提交修改</el-button>
+    </div>
     <el-card class="box-card">
       <span>checkoutpoint</span>
       <el-input style="width: 150px;" class="filter-item" v-model="rule.name"></el-input>
       <span>命中策略</span>
-      <el-select v-model="actionSelect" placeholder="请选择" clearable>
+      <el-select v-model="actionSelect" placeholder="请选择">
         <el-option v-for="key in Object.keys(actionMap)" :key="key" :label="actionMap[key]" :value="actionMap[key]"></el-option>
       </el-select>
     </el-card>
@@ -70,7 +72,7 @@
                           </el-select>
                         </el-form-item>
                         <el-form-item label="变量" prop="variable">
-                          <el-select v-model="form.variable" placeholder="请选择变量" clearable>
+                          <el-select v-model="form.variable" placeholder="请选择变量" filterable clearable>
                             <el-option v-for="t in Object.keys(variables)" :key="t" :label="mapper[t]" :value="mapper[t]">
                             </el-option>
                           </el-select>
@@ -113,11 +115,11 @@
           </el-tree>
         </div>
         <el-dialog :visible.sync="flowFormVisible">
-          <el-select v-model="flowSelect" placeholder="请选择操作符" clearable>
+          <el-select v-model="flowSelect" placeholder="请选择操作符" filterable clearable>
             <el-option v-for="item in operations" :key="item.op" :label="item.op" :value="item.op"></el-option>
           </el-select>或
-          <el-select v-model="flowRuleSelect" placeholder="请选择规则" clearable>
-            <el-option v-for="item in list" clearable :key="item.id" :label="item.name" :value="item.name"></el-option>
+          <el-select v-model="flowRuleSelect" placeholder="请选择规则" filterable clearable>
+            <el-option v-for="item in list" :key="item.id" :label="item.name" :value="item.name"></el-option>
           </el-select>
           <div slot="footer" class="dialog-footer">
             <el-button @click="flowFormVisible = false">取消</el-button>
@@ -156,7 +158,7 @@ export default {
       curRule: {},
       curRuleLeftType: '',
       boolList: ['是', '否'],
-      hitRadio: '',
+      hitRadio: 'or',
       listLoading: true,
       rule: {},
       operations: [
@@ -193,9 +195,6 @@ export default {
           this.mapper[this.variables[key].displayName] = key
           this.mapper[key] = this.variables[key].displayName
         }
-        if (Object.keys(this.$route.query).indexOf('id') === -1) {
-          return
-        }
         getActions().then(response => {
           this.actionMap = response.data
           this.actionConstant = clone(response.data)
@@ -203,6 +202,9 @@ export default {
             this.actionConstant[this.actionConstant[key]] = key
           }
         })
+        if (Object.keys(this.$route.query).indexOf('id') === -1) {
+          return
+        }
         getDrl(this.$route.query.id).then(response => {
           this.rule = response.data
           var input = JSON.parse(response.data.input)
@@ -334,7 +336,7 @@ export default {
         'name': '',
         'rule': []
       }
-      this.list.unshift(rule)
+      this.list.push(rule)
     },
     handleUpdateRight(rule) {
       this.curRule = rule
@@ -447,5 +449,14 @@ export default {
   justify-content: space-between;
   font-size: 14px;
   padding-right: 8px;
+}
+.fixed-div {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  bottom: 0px;
+  margin: 0;
+  z-index: 1000000;
+  height: 40px;
 }
 </style>
