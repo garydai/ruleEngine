@@ -61,23 +61,28 @@
                     <!--<el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item" :placeholder="list[index].rule[scope.$index].r" v-model="list[index].rule[scope.$index].r">-->
                     </el-input>
                     <el-dialog :visible.sync="dialogFormVisible">
-                      <el-form :model="form" :rules="formRule" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                        <el-form-item label="数值" prop="value">
+                      <!--<el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>
+                      <el-select v-model="form.determine" placeholder="请选择" :disabled="curRuleLeftType !== 'Boolean'" clearable>
+                        <el-option v-for="t in boolList" :key="t" :label="t" :value="t">
+                        </el-option>
+                      </el-select>
+                      <el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>-->
+                      <el-form label-width="100px" class="demo-ruleForm">
+                        <el-form-item label="数值">
                           <el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>
                         </el-form-item>
-                        <el-form-item label="是否" prop="determine">
+                        <el-form-item label="是否">
                           <el-select v-model="form.determine" placeholder="请选择" :disabled="curRuleLeftType !== 'Boolean'" clearable>
                             <el-option v-for="t in boolList" :key="t" :label="t" :value="t">
                             </el-option>
                           </el-select>
                         </el-form-item>
-                        <el-form-item label="变量" prop="variable">
-                          <el-select v-model="form.variable" placeholder="请选择变量" filterable clearable>
+                        <el-form-item label="变量">
+                          <el-select v-model="form.variable" placeholder="请选择变量" clearable filterable>
                             <el-option v-for="t in Object.keys(variables)" :key="t" :label="mapper[t]" :value="mapper[t]">
                             </el-option>
                           </el-select>
                         </el-form-item>
-                        
                       </el-form>
                       <div slot="footer" class="dialog-footer">
                         <el-button @click="dialogFormVisible = false">取消</el-button>
