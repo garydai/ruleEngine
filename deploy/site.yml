@@ -1,7 +1,6 @@
 ---
 
 - hosts: "{{ target | default('nowhere') }}"
-  become: yes
   tasks:
       - name: Copy {{ pkg }} to {{ ansible_default_ipv4.address }}
         synchronize:
