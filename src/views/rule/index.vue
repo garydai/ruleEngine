@@ -36,6 +36,7 @@
         <el-tree
           :data="data"
           default-expand-all
+          :expand-on-click-node="false"
           :render-content="renderContent"
           :props="defaultProps">
         </el-tree>
@@ -119,6 +120,11 @@ export default {
         this.$message('不能继续添加流程')
         return
       }
+      this.currentNode = data
+      this.form = { hit: '', nothit: '', hitAction: '', nothitAction: '' }
+      this.dialogFormVisible = true
+    },
+    modifySub(data) {
       this.currentNode = data
       this.form = { hit: '', nothit: '', hitAction: '', nothitAction: '' }
       this.dialogFormVisible = true
