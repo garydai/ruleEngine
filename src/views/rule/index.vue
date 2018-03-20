@@ -32,6 +32,9 @@
          <el-button style="right: 100px; position: absolute;" type="primary" size="small" @click="addFlow()">新增流程</el-button>
         <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="saveFlow()">保存</el-button>
       </div>
+      <div class="flow-id">
+        id：{{this.workflowId}}
+      </div>
       <div class="block">
         <el-tree
           :data="data"
@@ -95,6 +98,7 @@ export default {
     return {
       list: [],
       data: [],
+      workflowId: '',
       dialogFormVisible: false,
       flowVisible: false,
       form: {},
@@ -153,6 +157,7 @@ export default {
         getFlow().then(flowResp => {
           if (Object.keys(flowResp.data).indexOf('workflow') !== -1) {
             this.data = JSON.parse(flowResp.data.workflow)
+            this.workflowId = flowResp.data.id
           }
         })
         this.defaultProps['nodeMap'] = this.nodeMap
@@ -209,11 +214,8 @@ export default {
       this.dialogFormVisible = false
     },
     saveFlow() {
-      // var tmp = clone(this.data)
-      // tmp.filter(ele => {
-      //   return delete ele['id']
-      // })
       insertFlow({ 'workflow': JSON.stringify(this.data) }).then(response => {
+        this.fetchData()
         this.$message('保存成功')
       })
     },
@@ -274,5 +276,8 @@ export default {
   justify-content: space-between;
   font-size: 14px;
   padding-right: 8px;
+}
+.flow-id {
+  margin-bottom: 10px;
 }
 </style>
