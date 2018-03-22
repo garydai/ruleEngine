@@ -21,6 +21,13 @@ export function getActions() {
   })
 }
 
+export function getVersion() {
+  return request({
+    url: '/version',
+    method: 'get'
+  })
+}
+
 // todo refine
 export function updateRule(data) {
   return request.formPost('/update', data)

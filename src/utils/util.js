@@ -23,3 +23,12 @@ export function clone(obj) {
   }
   return c
 }
+
+export function walkTree(element, arr) {
+  if (element.type === 'rule') {
+    arr.push(element.label)
+    for (var i = 0; i < element.children.length; i++) {
+      walkTree(element.children[i], arr)
+    }
+  }
+}

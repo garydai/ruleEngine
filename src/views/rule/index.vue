@@ -8,6 +8,7 @@
       <el-table :data="list" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="name" label="规则集名"></el-table-column>
+        <el-table-column prop="version" label="当前版本"></el-table-column>
         <el-table-column label="命中策略">
           <template slot-scope="scope">
             <span>{{actionMap[scope.row.action]}}</span>
@@ -15,7 +16,7 @@
         </el-table-column>
         <el-table-column label="更新时间">
            <template slot-scope="scope">
-            <span>{{scope.row.createdTime / 1000 | moment("YYYY-MM-DD ss:mm") }}</span>
+            <span>{{scope.row.createTime / 1000 | moment("YYYY-MM-DD hh:mm") }}</span>
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -29,8 +30,8 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>workflow + decision</span>
-         <el-button style="right: 100px; position: absolute;" type="primary" size="small" @click="addFlow()">新增流程</el-button>
-        <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="saveFlow()">保存</el-button>
+         <el-button style="right: 130px; position: absolute;" type="primary" size="small" @click="addFlow()">新增流程</el-button>
+        <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="saveFlow()">提交更新</el-button>
       </div>
       <div class="flow-id">
         id：{{this.workflowId}}
@@ -89,14 +90,15 @@
 </template>
 
 <script>
-import { insertFlow, activateRule, getList, getActions, deleteDrl } from '@/api/rule'
-import { getFlow } from '@/api/rule'
+import { insertFlow, activateRule, getList, getActions, deleteDrl, getFlow } from '@/api/rule'
+import { walkTree } from '@/utils/util'
 let nid = 100
 export default {
   name: 'dashboard',
   data() {
     return {
       list: [],
+      allRuleVersion: {},
       data: [],
       workflowId: '',
       dialogFormVisible: false,
@@ -147,8 +149,10 @@ export default {
     fetchData() {
       getList().then(response => {
         this.list = response.data
+        this.allRuleVersion = {}
         this.list.forEach(function(element) {
           this.nodeMap['rule'][element.id + ''] = element.name
+          this.allRuleVersion[element.id + ''] = element.version
         }, this)
         getActions().then(response => {
           this.actionMap = response.data
@@ -214,6 +218,15 @@ export default {
       this.dialogFormVisible = false
     },
     saveFlow() {
+      this.data.forEach(function(ele) {
+        var ruleArray = []
+        walkTree(ele, ruleArray)
+        var ruleVersion = {}
+        ruleArray.forEach(function(ele) {
+          ruleVersion[ele + ''] = this.allRuleVersion[ele + '']
+        }, this)
+        ele['ruleVersion'] = ruleVersion
+      }, this)
       insertFlow({ 'workflow': JSON.stringify(this.data) }).then(response => {
         this.fetchData()
         this.$message('保存成功')
