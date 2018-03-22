@@ -1,0 +1,50 @@
+<template>
+  <div class="dashboard-container">
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>workflow版本</span>
+      </div>
+      <div style="margin-bottom:50px;">
+        <el-table :data="list" style="width: 100%">
+          <el-table-column width="180" label="id">
+            <template slot-scope="scope">
+              <span>{{scope.row.id}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column width="180" label="staging">
+            <template slot-scope="scope">
+              <span>{{scope.row.staging}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column width="180" label="production">
+            <template slot-scope="scope">
+              <span>{{scope.row.production}}</span>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-card>
+  </div>
+</template>
+
+<script>
+import { getVersion } from '@/api/rule'
+
+export default {
+  data() {
+    return {
+      list: []
+    }
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      getVersion().then(response => {
+        this.list = response.data
+      })
+    }
+  }
+}
+</script>
