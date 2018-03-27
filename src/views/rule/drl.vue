@@ -7,10 +7,6 @@
     <el-card class="box-card">
       <span>checkoutpoint</span>
       <el-input style="width: 150px;" class="filter-item" v-model="rule.name"></el-input>
-      <span>命中策略</span>
-      <el-select v-model="actionSelect" placeholder="请选择">
-        <el-option v-for="key in Object.keys(actionMap)" :key="key" :label="actionMap[key]" :value="actionMap[key]"></el-option>
-      </el-select>
     </el-card>
     <div class="rules" style="margin-top: 20px">
       <el-row v-for="(item, index) in list" :key="index">
@@ -18,6 +14,15 @@
           <div slot="header" class="clearfix">
             <span>规则</span>
             <el-input style="width: 200px;" class="filter-item" :placeholder="item.name" v-model="list[index].name">
+            </el-input>
+            <span>类别</span>
+            <el-input style="width: 200px;" class="filter-item" :placeholder="item.source" v-model="list[index].source">
+            </el-input>
+            <span>描述</span>
+            <el-input style="width: 200px;" class="filter-item" :placeholder="item.detail.desc.vaule" v-model="list[index].detail.desc.value">
+            </el-input>
+            <span>优先级</span>
+            <el-input style="width: 100px;" class="filter-item" :placeholder="item.level" v-model="list[index].level">
             </el-input>
             <el-button type="danger" size="mini" @click="handleDeleteRule(index)">删除规则
             </el-button>      
@@ -217,7 +222,6 @@ export default {
           this.hitRadio = input.expression.coarse
           this.flow = input.expression.fine
           this.list = input.rules
-          this.actionSelect = this.actionMap[this.rule.action]
           this.list.forEach(function(element) {
             element.name = element.name.replace(/^"(.*)"$/, '$1')
             element.rule.forEach(function(ele) {
@@ -245,10 +249,6 @@ export default {
     },
     handleUpdateRule() {
       // todo 增量修改
-      if (!this.actionSelect) {
-        this.$message('请填写完整')
-        return
-      }
       var listCopy = clone(this.list)
       var result = {
         ver: constant.ruleVersion,
@@ -263,6 +263,7 @@ export default {
           valid = false
         }
         var rule = element.rule
+        var v = []
         rule.forEach(function(element, index) {
           if (element.l in this.mapper) {
             element.l = this.mapper[element.l]
@@ -291,9 +292,15 @@ export default {
 
           if (element.l !== '') {
             this.push(variables, variablesMap, element.l)
+            if (element.l !== 'null') {
+              v.push(element.l)
+            }
           }
           if (element.r_t === 'v') {
             this.push(variables, variablesMap, element.r)
+            if (element.r !== 'null') {
+              v.push(element.r)
+            }
           }
         }, this)
 
@@ -309,12 +316,12 @@ export default {
       result.expression.coarse = this.hitRadio
       result.expression.fine = this.flow
       if (this.rule && this.rule.id) {
-        updateRule({ input: JSON.stringify(result), id: this.rule.id, name: this.rule.name, action: this.actionConstant[this.actionSelect] }).then(response => {
+        updateRule({ input: JSON.stringify(result), id: this.rule.id, name: this.rule.name }).then(response => {
           this.$message('保存成功')
           this.fetchData()
         })
       } else {
-        addRule({ input: JSON.stringify(result), name: this.rule.name, action: this.actionConstant[this.actionSelect] }).then(response => {
+        addRule({ input: JSON.stringify(result), name: this.rule.name }).then(response => {
           this.$router.push('/engine/rule')
         })
       }
@@ -340,7 +347,23 @@ export default {
     handleAddRule(listIdx) {
       var rule = {
         'name': '',
-        'rule': []
+        'rule': [],
+        'level': '',
+        'source': '',
+        'detail': {
+          'desc': {
+            'enabled': false,
+            'value': ''
+          },
+          'variable': {
+            'enabled': false,
+            'members': []
+          },
+          'udf': {
+            'enabled': false,
+            'variables': []
+          }
+        }
       }
       this.list.push(rule)
     },

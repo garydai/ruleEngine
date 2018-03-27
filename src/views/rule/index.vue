@@ -9,11 +9,6 @@
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="name" label="规则集名"></el-table-column>
         <el-table-column prop="version" label="当前版本"></el-table-column>
-        <el-table-column label="命中策略">
-          <template slot-scope="scope">
-            <span>{{actionMap[scope.row.action]}}</span>
-          </template>
-        </el-table-column>
         <el-table-column label="更新时间">
            <template slot-scope="scope">
             <span>{{scope.row.createTime / 1000 | moment("YYYY-MM-DD hh:mm") }}</span>
