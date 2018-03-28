@@ -13,16 +13,19 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>规则</span>
-            <el-input style="width: 200px;" class="filter-item" :placeholder="item.name" v-model="list[index].name">
+            <el-input style="width: 200px;" class="filter-item" placeholder="必选" v-model="list[index].name">
+            </el-input>
+          </div>
+          <div slot="header" class="clearfix" style="margin-top:10px">
             </el-input>
             <span>类别</span>
-            <el-input style="width: 200px;" class="filter-item" :placeholder="item.source" v-model="list[index].source">
+            <el-input style="width: 200px;" class="filter-item" placeholder="可选" v-model="list[index].source">
             </el-input>
             <span>描述</span>
-            <el-input style="width: 200px;" class="filter-item" :placeholder="item.detail.desc.vaule" v-model="list[index].detail.desc.value">
+            <el-input style="width: 200px;" class="filter-item" placeholder="可选" v-model="list[index].detail.desc.value">
             </el-input>
             <span>优先级</span>
-            <el-input style="width: 100px;" class="filter-item" :placeholder="item.level" v-model="list[index].level">
+            <el-input style="width: 100px;" class="filter-item" placeholder="可选" v-model="list[index].level">
             </el-input>
             <el-button type="danger" size="mini" @click="handleDeleteRule(index)">删除规则
             </el-button>      
@@ -292,18 +295,14 @@ export default {
 
           if (element.l !== '') {
             this.push(variables, variablesMap, element.l)
-            if (element.l !== 'null') {
-              v.push(element.l)
-            }
+            this.pushRuleVariable(v, element.l)
           }
           if (element.r_t === 'v') {
             this.push(variables, variablesMap, element.r)
-            if (element.r !== 'null') {
-              v.push(element.r)
-            }
+            this.pushRuleVariable(v, element.r)
           }
         }, this)
-
+        element.detail.variable.members = v
         if (rule.length % 2 === 0) {
           valid = false
         }
@@ -324,6 +323,14 @@ export default {
         addRule({ input: JSON.stringify(result), name: this.rule.name }).then(response => {
           this.$router.push('/engine/rule')
         })
+      }
+    },
+    pushRuleVariable(v, value) {
+      console.log(v)
+      console.log(value)
+      console.log(this.variables[value])
+      if (value !== 'null' && (this.variables[value].visibility === undefined || this.variables[value].visibility === 'false')) {
+        v.push(value)
       }
     },
     push(variables, variablesMap, value) {
