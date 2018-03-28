@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 
-export function getList() {
+export function getList(id) {
   return request({
-    url: '/drl/list',
-    method: 'get'
+    url: '/necklace/workflow/latest',
+    method: 'get',
+    params: { sceneId: id }
   })
 }
 

@@ -44,10 +44,17 @@ export const constantRouterMap = [
     meta: { title: '规则引擎', icon: 'example' },
     children: [
       {
+        path: 'scene',
+        name: 'scene',
+        component: () => import('@/views/rule/index'),
+        meta: { title: '场景', icon: 'table' }
+      },
+      {
         path: 'rule',
         name: 'rule',
-        component: () => import('@/views/rule/index'),
-        meta: { title: '规则', icon: 'table' }
+        hidden: true,
+        component: () => import('@/views/rule/workflow'),
+        meta: { title: 'rule' }
       },
       {
         path: 'test',
