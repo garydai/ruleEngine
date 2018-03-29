@@ -15,3 +15,7 @@ export function getSceneList(data) {
 export function updateScene(id, data) {
   return request.formPost(process.env.NECKLACE_API + '/scene/update/' + id, data)
 }
+
+export function deleteScene(id) {
+  return request.formPost(process.env.NECKLACE_API + '/scene/delete/' + id)
+}

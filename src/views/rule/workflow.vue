@@ -41,6 +41,14 @@
         </el-tree>
       </div>      
     </el-card>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>测试</span>
+      </div>
+      <div class="test">
+        <el-button style="" type="primary" size="small" @click="test()">测试</el-button>
+      </div>
+    </el-card>
     <el-dialog :visible.sync="dialogFormVisible">
       <el-form :model="form" ref="ruleForm" label-width="180px" class="demo-ruleForm">
         <el-form-item label="如果命中该drl，则运行" prop="variable">
@@ -116,6 +124,9 @@ export default {
     this.fetchData()
   },
   methods: {
+    test() {
+      this.$router.push('/engine/test?sceneId=' + this.$route.query.sceneId)
+    },
     append(data) {
       if (data.label === '' || data.type === 'action') {
         this.$message('不能继续添加流程')
@@ -156,7 +167,7 @@ export default {
           this.actionMap = response.data
           this.nodeMap['action'] = this.actionMap
         })
-        getFlow().then(flowResp => {
+        getFlow({ sceneId: this.$route.query.sceneId }).then(flowResp => {
           if (Object.keys(flowResp.data).indexOf('workflow') !== -1) {
             this.data = JSON.parse(flowResp.data.workflow)
             this.workflowId = flowResp.data.id
@@ -225,7 +236,7 @@ export default {
         }, this)
         ele['ruleVersion'] = ruleVersion
       }, this)
-      insertFlow({ 'workflow': JSON.stringify(this.data) }).then(response => {
+      insertFlow({ workflow: JSON.stringify(this.data), sceneId: this.$route.query.sceneId }).then(response => {
         this.fetchData()
         this.$message('保存成功')
       })

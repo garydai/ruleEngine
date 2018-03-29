@@ -31,7 +31,7 @@ export function getVersion() {
 
 // todo refine
 export function updateRule(data) {
-  return request.formPost(process.env.TSHIRT_API + '/update', data)
+  return request.formPost(process.env.NECKLACE_API + '/update', data)
 }
 
 export function addRule(data) {
@@ -47,7 +47,7 @@ export function testRule(data) {
 }
 
 export function deleteDrl(data) {
-  return request.formPost(process.env.TSHIRT_API + '/delete', data)
+  return request.formPost(process.env.NECKLACE_API + '/drl/delete', data)
 }
 
 export function activateRule(data) {
@@ -56,19 +56,20 @@ export function activateRule(data) {
 
 export function getDrl(id) {
   return request({
-    url: process.env.TSHIRT_API + '/drl/' + id,
+    url: process.env.NECKLACE_API + '/drl/' + id,
     method: 'get'
   })
 }
 
 export function insertFlow(data) {
-  return request.formPost(process.env.TSHIRT_API + 'necklace/workflow/add', data)
+  return request.formPost(process.env.NECKLACE_API + '/workflow/add', data)
 }
 
-export function getFlow() {
+export function getFlow(data) {
   return request({
     url: process.env.NECKLACE_API + '/workflow/latest',
-    method: 'get'
+    method: 'get',
+    params: data
   })
 }
 

@@ -60,6 +60,7 @@ export const constantRouterMap = [
         path: 'test',
         name: 'test',
         component: () => import('@/views/rule/test'),
+        hidden: true,
         meta: { title: '测试', icon: 'tree' }
       },
       {

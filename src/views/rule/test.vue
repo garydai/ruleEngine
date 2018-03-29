@@ -123,10 +123,9 @@ export default {
             break
         }
         test = test + ',' + item + ':' + p[item]
-        console.log(test)
       }, this)
       test = test.substr(1)
-      testRule({ 'req': '{' + test + '}' }).then(response => {
+      testRule({ 'req': '{' + test + '}', sceneId: this.$route.query.sceneId }).then(response => {
         this.result = JSON.stringify(response.data, null, 2)
       })
     },

@@ -314,14 +314,11 @@ export default {
         })
       } else {
         addRule({ input: JSON.stringify(result), name: this.rule.name, sceneId: this.$route.query.sceneId }).then(response => {
-          this.$router.push('/engine/rule')
+          this.$router.push('/engine/rule?sceneId=' + this.$route.query.sceneId)
         })
       }
     },
     pushRuleVariable(v, value) {
-      console.log(v)
-      console.log(value)
-      console.log(this.variables[value])
       if (value !== 'null' && (this.variables[value].visibility === undefined || this.variables[value].visibility === 'false')) {
         v.push(value)
       }

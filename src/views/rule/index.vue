@@ -17,7 +17,7 @@
           <template slot-scope="scope">
             <el-button type="primary" @click="modify(scope.row)" size="mini" icon="el-icon-edit">修改</el-button>
             <el-button type="primary" @click="workflow(scope.row)" size="mini" icon="el-icon-edit">编辑规则</el-button>
-            <el-button type="danger" @click="removeDrl(scope.row)" size="mini" icon="el-icon-delete">删除</el-button>
+            <el-button type="danger" @click="removeScene(scope.row)" size="mini" icon="el-icon-delete">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { getSceneList, addScene, updateScene } from '@/api/scene'
+import { getSceneList, addScene, updateScene, deleteScene } from '@/api/scene'
 export default {
   name: 'scene',
   data() {
@@ -75,18 +75,15 @@ export default {
         })
       }
     },
-    append(data) {
-      if (data.label === '' || data.type === 'action') {
-        this.$message('不能继续添加流程')
-        return
-      }
-      this.currentNode = data
-      this.form = { hit: '', nothit: '', hitAction: '', nothitAction: '' }
-      this.dialogFormVisible = true
-    },
     fetchData() {
       getSceneList({ userId: 1 }).then(response => {
         this.list = response.data
+      })
+    },
+    removeScene(data) {
+      deleteScene(data.id).then(response => {
+        this.$message('删除成功')
+        this.fetchData()
       })
     }
   }
