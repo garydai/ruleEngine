@@ -39,7 +39,7 @@ export const constantRouterMap = [
   {
     path: '/engine',
     component: Layout,
-    redirect: '/engine/rule',
+    redirect: '/engine/scene',
     name: 'engine',
     meta: { title: '规则引擎', icon: 'example' },
     children: [

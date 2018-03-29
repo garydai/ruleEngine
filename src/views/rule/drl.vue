@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import { getDrl, addRule, getVariables, updateRule, getActions } from '@/api/rule'
+import { getDrl, addRule, getVariables, updateRule } from '@/api/rule'
 import { clone } from '@/utils/util'
 const constant = require('@/utils/constant')
 let nid = 100
@@ -209,13 +209,6 @@ export default {
           this.mapper[this.variables[key].displayName] = key
           this.mapper[key] = this.variables[key].displayName
         }
-        getActions().then(response => {
-          this.actionMap = response.data
-          this.actionConstant = clone(response.data)
-          for (var key in this.actionMap) {
-            this.actionConstant[this.actionConstant[key]] = key
-          }
-        })
         if (Object.keys(this.$route.query).indexOf('id') === -1) {
           return
         }
@@ -315,12 +308,12 @@ export default {
       result.expression.coarse = this.hitRadio
       result.expression.fine = this.flow
       if (this.rule && this.rule.id) {
-        updateRule({ input: JSON.stringify(result), id: this.rule.id, name: this.rule.name }).then(response => {
+        updateRule({ input: JSON.stringify(result), id: this.rule.id, name: this.rule.name, sceneId: this.$route.query.sceneId }).then(response => {
           this.$message('保存成功')
           this.fetchData()
         })
       } else {
-        addRule({ input: JSON.stringify(result), name: this.rule.name }).then(response => {
+        addRule({ input: JSON.stringify(result), name: this.rule.name, sceneId: this.$route.query.sceneId }).then(response => {
           this.$router.push('/engine/rule')
         })
       }

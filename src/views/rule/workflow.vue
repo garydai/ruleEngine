@@ -144,6 +144,9 @@ export default {
     fetchData() {
       getList(this.$route.query.sceneId).then(response => {
         this.list = response.data
+        if (this.list == null) {
+          this.list = []
+        }
         this.allRuleVersion = {}
         this.list.forEach(function(element) {
           this.nodeMap['rule'][element.id + ''] = element.name
@@ -254,7 +257,7 @@ export default {
       })
     },
     addCheckpoint() {
-      this.$router.push('/engine/drl')
+      this.$router.push('/engine/drl?sceneId=' + this.$route.query.sceneId)
     }
   }
 }
