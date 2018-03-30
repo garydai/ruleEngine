@@ -16,15 +16,19 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button type="primary" @click="modify(scope.row)" size="mini" icon="el-icon-edit">修改</el-button>
-            <el-button type="primary" @click="workflow(scope.row)" size="mini" icon="el-icon-edit">编辑规则</el-button>
+            <el-button type="primary" @click="workflow(scope.row)" size="mini" icon="el-icon-edit">规则</el-button>
             <el-button type="danger" @click="removeScene(scope.row)" size="mini" icon="el-icon-delete">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <el-dialog :visible.sync="visible">
-      <span>场景</span>
-      <el-input style="width: 200px;" class="filter-item" placeholder="请填写" v-model="sceneName"></el-input>
+      <el-form> 
+        <el-form-item label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
+          <span>场景</span>
+          <el-input style="width: 200px;" class="filter-item" placeholder="请填写" v-model="sceneName"></el-input>
+        </el-form-item>
+      </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="visible = false">取消</el-button>
         <el-button type="primary" @click="saveSceneName()">保存</el-button>

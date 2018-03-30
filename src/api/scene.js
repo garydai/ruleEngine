@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export function addScene(data) {
-  return request.formPost('/scene/add', data)
+  return request.formPost(process.env.NECKLACE_API + '/scene/add', data)
 }
 
 export function getSceneList(data) {

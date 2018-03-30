@@ -308,7 +308,7 @@ export default {
       result.expression.coarse = this.hitRadio
       result.expression.fine = this.flow
       if (this.rule && this.rule.id) {
-        updateRule({ input: JSON.stringify(result), id: this.rule.id, name: this.rule.name, sceneId: this.$route.query.sceneId }).then(response => {
+        updateRule(this.$route.query.id, { input: JSON.stringify(result), id: this.rule.id, name: this.rule.name }).then(response => {
           this.$message('保存成功')
           this.fetchData()
         })

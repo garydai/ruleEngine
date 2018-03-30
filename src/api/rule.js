@@ -30,8 +30,8 @@ export function getVersion() {
 }
 
 // todo refine
-export function updateRule(data) {
-  return request.formPost(process.env.NECKLACE_API + '/update', data)
+export function updateRule(id, data) {
+  return request.formPost(process.env.NECKLACE_API + '/drl/update/' + id, data)
 }
 
 export function addRule(data) {
@@ -71,5 +71,13 @@ export function getFlow(data) {
     method: 'get',
     params: data
   })
+}
+
+export function deployTest(flowId) {
+  return request.formPost(process.env.NECKLACE_API + '/deploy/test/' + flowId)
+}
+
+export function deployProd(flowId) {
+  return request.formPost(process.env.NECKLACE_API + '/deploy/prod/' + flowId)
 }
 

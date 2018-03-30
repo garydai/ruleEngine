@@ -29,7 +29,7 @@
         <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="saveFlow()">提交更新</el-button>
       </div>
       <div class="flow-id">
-        id：{{this.workflowId}}
+        编号：{{this.workflowId}}
       </div>
       <div class="block">
         <el-tree
@@ -47,6 +47,22 @@
       </div>
       <div class="test">
         <el-button style="" type="primary" size="small" @click="test()">测试</el-button>
+      </div>
+    </el-card>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>部署测试环境</span>
+      </div>
+      <div class="test">
+        <el-button style="" type="primary" size="small" @click="staging()">部署</el-button>
+      </div>
+    </el-card>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>部署到线上</span>
+      </div>
+      <div class="test">
+        <el-button style="" type="primary" size="small" @click="prod()">部署</el-button>
       </div>
     </el-card>
     <el-dialog :visible.sync="dialogFormVisible">
@@ -93,7 +109,7 @@
 </template>
 
 <script>
-import { insertFlow, activateRule, getList, getActions, deleteDrl, getFlow } from '@/api/rule'
+import { insertFlow, activateRule, getList, getActions, deleteDrl, getFlow, deployTest, deployProd } from '@/api/rule'
 import { walkTree } from '@/utils/util'
 let nid = 100
 export default {
@@ -124,6 +140,16 @@ export default {
     this.fetchData()
   },
   methods: {
+    staging() {
+      deployTest(this.workflowId).then(response => {
+        this.$message('部署成功')
+      })
+    },
+    prod() {
+      deployProd(this.workflowId).then(response => {
+        this.$message('部署成功')
+      })
+    },
     test() {
       this.$router.push('/engine/test?sceneId=' + this.$route.query.sceneId)
     },
