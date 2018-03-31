@@ -24,7 +24,7 @@ export function getActions() {
 
 export function getVersion() {
   return request({
-    url: process.env.TSHIRT_API + '/version',
+    url: process.env.NECKLACE_API + '/version',
     method: 'get'
   })
 }
