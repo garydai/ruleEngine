@@ -252,6 +252,7 @@ export default {
         expression: {}
       }
       var valid = true
+      var error = ''
       var variables = []
       var variablesMap = {}
       listCopy.forEach(function(element) {
@@ -287,11 +288,17 @@ export default {
           }
 
           if (element.l !== '') {
-            this.push(variables, variablesMap, element.l)
+            if (!this.push(variables, variablesMap, element.l)) {
+              error = '变量缺失'
+              return
+            }
             this.pushRuleVariable(v, element.l)
           }
           if (element.r_t === 'v') {
-            this.push(variables, variablesMap, element.r)
+            if (!this.push(variables, variablesMap, element.r)) {
+              error = '变量缺失'
+              return
+            }
             this.pushRuleVariable(v, element.r)
           }
         }, this)
@@ -302,6 +309,10 @@ export default {
       }, this)
       if (!valid) {
         this.$message('请填写完整')
+        return
+      }
+      if (error !== '') {
+        this.$message(error)
         return
       }
       result.variables = variables
@@ -325,12 +336,18 @@ export default {
     },
     push(variables, variablesMap, value) {
       if (value === 'null') {
-        return
+        return true
       }
       if (!(value in variablesMap)) {
-        variables.push(value)
+        if (this.variables[value] === undefined) {
+          return false
+        }
+        var t = {}
+        t[value] = this.variables[value].displayName
+        variables.push({ t })
         variablesMap[value] = 1
       }
+      return true
     },
     handleAddRelation(listIdx) {
       var item = {
