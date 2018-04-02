@@ -29,9 +29,9 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          const data = response.data
-          setToken(data.token)
+        login(username, btoa(userInfo.password)).then(response => {
+          const data = response
+          setToken({ token: data.token, username: username })
           commit('SET_TOKEN', data.token)
           resolve()
         }).catch(error => {

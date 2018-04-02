@@ -253,7 +253,7 @@ export default {
       }
       var valid = true
       var error = ''
-      var variables = []
+      var variables = {}
       var variablesMap = {}
       listCopy.forEach(function(element) {
         if (element.name === '') {
@@ -342,9 +342,7 @@ export default {
         if (this.variables[value] === undefined) {
           return false
         }
-        var t = {}
-        t[value] = this.variables[value].displayName
-        variables.push({ t })
+        variables[value] = this.variables[value].displayName
         variablesMap[value] = 1
       }
       return true

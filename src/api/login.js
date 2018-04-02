@@ -1,14 +1,12 @@
 import request from '@/utils/request'
 
 export function login(username, password) {
-  return request({
-    url: '/user/login',
-    method: 'post',
-    data: {
+  return request.formPost(process.env.NECKLACE_API + '/user/login',
+    {
       username,
       password
     }
-  })
+  )
 }
 
 export function getInfo(token) {
