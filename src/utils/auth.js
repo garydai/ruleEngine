@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const TokenKey = 'Admin-Token'
 
 export function getToken() {
-  return JSON.parse(Cookies.get(TokenKey))
+  return Cookies.get(TokenKey)
 }
 
 export function setToken(token) {
