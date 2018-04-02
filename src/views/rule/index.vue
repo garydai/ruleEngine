@@ -68,7 +68,7 @@ export default {
     },
     saveSceneName() {
       if (this.curId === -1) {
-        addScene({ userId: 1, sceneName: this.sceneName }).then(response => {
+        addScene({ sceneName: this.sceneName }).then(response => {
           this.visible = false
           this.fetchData()
         })
@@ -80,7 +80,7 @@ export default {
       }
     },
     fetchData() {
-      getSceneList({ userId: 1 }).then(response => {
+      getSceneList().then(response => {
         this.list = response.data
       })
     },
