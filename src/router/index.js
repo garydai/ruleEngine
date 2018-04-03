@@ -54,7 +54,7 @@ export const constantRouterMap = [
         name: 'rule',
         hidden: true,
         component: () => import('@/views/rule/workflow'),
-        meta: { title: 'rule' }
+        meta: { title: '工作流' }
       },
       {
         path: 'test',
@@ -68,7 +68,7 @@ export const constantRouterMap = [
         name: 'drl',
         component: () => import('@/views/rule/drl'),
         hidden: true,
-        meta: { title: 'drl' }
+        meta: { title: '规则' }
       },
       {
         path: 'version',

@@ -5,7 +5,7 @@
         <span>场景</span>
         <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="addScene()">新增场景</el-button>
       </div>
-      <el-table :data="list" border fit highlight-current-row style="width: 100%">
+      <el-table v-loading="loading" :data="list" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="name" label="场景"></el-table-column>
         <el-table-column label="更新时间">
@@ -47,7 +47,8 @@ export default {
       sceneName: '',
       visible: false,
       updateFlat: -1,
-      curId: -1
+      curId: -1,
+      loading: false
     }
   },
   created() {
@@ -80,8 +81,11 @@ export default {
       }
     },
     fetchData() {
+      this.loading = true
       getSceneList().then(response => {
         this.list = response.data
+      }).finally(() => {
+        this.loading = false
       })
     },
     removeScene(data) {
