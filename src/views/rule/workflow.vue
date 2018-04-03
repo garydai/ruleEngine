@@ -5,7 +5,7 @@
         <span>checkpoints</span>
         <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="addCheckpoint()">新增checkpoint</el-button>
       </div>
-      <el-table :data="list" border fit highlight-current-row style="width: 100%">
+      <el-table v-loading="loading" :data="list" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="name" label="规则集名"></el-table-column>
         <el-table-column prop="version" label="当前版本"></el-table-column>
@@ -133,7 +133,8 @@ export default {
       },
       defaultProps: {
       },
-      actionMap: {}
+      actionMap: {},
+      loading: false
     }
   },
   created() {
@@ -179,6 +180,7 @@ export default {
       }
     },
     fetchData() {
+      this.loading = true
       getList(this.$route.query.sceneId).then(response => {
         this.list = response.data
         if (this.list == null) {
@@ -200,6 +202,8 @@ export default {
           }
         })
         this.defaultProps['nodeMap'] = this.nodeMap
+      }).finally(() => {
+        this.loading = false
       })
     },
     modify(row) {

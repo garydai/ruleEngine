@@ -8,7 +8,7 @@
       <span>checkoutpoint</span>
       <el-input style="width: 150px;" class="filter-item" v-model="rule.name"></el-input>
     </el-card>
-    <div class="rules" style="margin-top: 20px">
+    <div v-loading="loading" class="rules" style="margin-top: 20px">
       <el-row v-for="(item, index) in list" :key="index">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -173,7 +173,6 @@ export default {
       curRuleLeftType: '',
       boolList: ['是', '否'],
       hitRadio: 'or',
-      listLoading: true,
       rule: {},
       operations: [
         { op: 'and' },
@@ -186,7 +185,8 @@ export default {
       currentNode: {},
       actionSelect: '',
       actionMap: {},
-      actionConstant: {}
+      actionConstant: {},
+      loading: false
     }
   },
   created() {
@@ -196,7 +196,6 @@ export default {
   },
   methods: {
     fetchData() {
-      this.listLoading = true
       getVariables().then(response => {
         this.variables = response.data
         var nul = {
@@ -212,6 +211,7 @@ export default {
         if (Object.keys(this.$route.query).indexOf('id') === -1) {
           return
         }
+        this.loading = true
         getDrl(this.$route.query.id).then(response => {
           this.rule = response.data
           var input = JSON.parse(response.data.input)
@@ -233,7 +233,8 @@ export default {
               ele.r = ele.r.replace(/^"(.*)"$/, '$1')
             }, this)
           }, this)
-          this.listLoading = false
+        }).finally(() => {
+          this.loading = false
         })
       })
     },
