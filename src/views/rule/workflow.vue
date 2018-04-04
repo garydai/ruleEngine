@@ -210,6 +210,15 @@ export default {
       this.$router.push('/engine/drl?id=' + row.id)
     },
     removeDrl(row) {
+      this.$confirm('是否确定删除该规则?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.confirmRemoveDrl(row)
+      })
+    },
+    confirmRemoveDrl(row) {
       deleteDrl({ id: row.id }).then(response => {
         this.$message('删除成功')
         this.fetchData()
