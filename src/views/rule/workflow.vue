@@ -24,7 +24,7 @@
     </el-card>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>workflow + decision</span>
+        <span>workflow（更新规则后，请更新workflow，否则更新的规则不生效）</span>
          <el-button style="right: 130px; position: absolute;" type="primary" size="small" @click="addFlow()">新增流程</el-button>
         <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="saveFlow()">提交更新</el-button>
       </div>
