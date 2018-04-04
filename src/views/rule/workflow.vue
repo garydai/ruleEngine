@@ -51,7 +51,7 @@
     </el-card>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>部署测试环境</span>
+        <span>部署到测试环境</span>
       </div>
       <div class="test">
         <el-button style="" type="primary" size="small" @click="staging()">部署</el-button>
