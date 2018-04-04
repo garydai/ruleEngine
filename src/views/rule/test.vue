@@ -138,7 +138,7 @@ export default {
     },
     onTest() {
       this.result = ''
-      testRule().then(response => {
+      testRule({ sceneId: this.$route.query.sceneId }).then(response => {
         this.result = JSON.stringify(response.data, null, 2)
       })
     }
