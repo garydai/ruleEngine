@@ -55,6 +55,7 @@
       </div>
       <div class="test">
         <el-button style="" type="primary" size="small" @click="staging()">部署</el-button>
+        <span class="version">版本</span><el-input style="width:100px; margin-left:10px" class="filter-item" v-model="testVersion"></el-input>        
       </div>
     </el-card>
     <el-card class="box-card">
@@ -63,6 +64,7 @@
       </div>
       <div class="test">
         <el-button style="" type="primary" size="small" @click="prod()">部署</el-button>
+        <span class="version">版本</span><el-input style="width:100px; margin-left:10px" class="filter-item" v-model="prodVersion"></el-input>        
       </div>
     </el-card>
     <el-dialog :visible.sync="dialogFormVisible">
@@ -134,7 +136,9 @@ export default {
       defaultProps: {
       },
       actionMap: {},
-      loading: false
+      loading: false,
+      testVersion: 0,
+      prodVersion: 0
     }
   },
   created() {
@@ -142,13 +146,40 @@ export default {
   },
   methods: {
     staging() {
-      deployTest(this.workflowId).then(response => {
+      if (this.testVersion === 0) {
+        this.$message('版本为空')
+        return
+      }
+      this.deploy(this.testVersion, this.confirmTest)
+    },
+    prod() {
+      if (this.prodVersion === 0) {
+        this.$message('版本为空')
+        return
+      }
+      this.deploy(this.prodVersion, this.confirmProd)
+    },
+    confirmTest(id) {
+      deployTest(id).then(response => {
         this.$message('部署成功')
       })
     },
-    prod() {
-      deployProd(this.workflowId).then(response => {
+    confirmProd(id) {
+      deployProd(id).then(response => {
         this.$message('部署成功')
+      })
+    },
+    deploy(id, func) {
+      if (id === 0) {
+        this.$message('版本为空')
+        return
+      }
+      this.$confirm('是否确定部署' + id + '版本吗', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        func(id)
       })
     },
     test() {
@@ -199,6 +230,8 @@ export default {
           if (Object.keys(flowResp.data).indexOf('workflow') !== -1) {
             this.data = JSON.parse(flowResp.data.workflow)
             this.workflowId = flowResp.data.id
+            this.testVersion = this.workflowId
+            this.prodVersion = this.workflowId
           }
         })
         this.defaultProps['nodeMap'] = this.nodeMap
@@ -340,5 +373,9 @@ export default {
 }
 .flow-id {
   margin-bottom: 10px;
+}
+.version {
+  font-size:15px;
+  margin-left:10px;
 }
 </style>
