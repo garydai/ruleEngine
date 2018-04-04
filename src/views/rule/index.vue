@@ -22,11 +22,10 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <el-dialog :visible.sync="visible">
+    <el-dialog :visible.sync="visible" width="30%">
       <el-form> 
-        <el-form-item label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-          <span>场景</span>
-          <el-input style="width: 200px;" class="filter-item" placeholder="请填写" v-model="sceneName"></el-input>
+        <el-form-item label="场景名">
+          <el-input placeholder="请填写" v-model="sceneName"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -89,8 +88,20 @@ export default {
       })
     },
     removeScene(data) {
+      this.$confirm('是否确定删除该场景?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.confirmRemoveScene(data)
+      })
+    },
+    confirmRemoveScene(data) {
       deleteScene(data.id).then(response => {
-        this.$message('删除成功')
+        this.$message({
+          type: 'success',
+          message: '删除成功'
+        })
         this.fetchData()
       })
     }
