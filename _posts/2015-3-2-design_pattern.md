@@ -480,7 +480,7 @@ twisted框架有使用该模式
 	   }
    
    
-	   public abstract class Decorator:AbstractCellPhone
+	   public abstract class Decorator : AbstractCellPhone
 	    {
 	        AbstractCellPhone _phone;
 	 
