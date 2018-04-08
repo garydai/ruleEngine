@@ -22,17 +22,19 @@ export function getActions() {
   })
 }
 
-export function getVersion() {
+export function getVersion(envId) {
   return request({
     url: process.env.NECKLACE_API + '/version',
-    method: 'get'
+    method: 'get',
+    params: { env: envId }
   })
 }
 
-export function getVersionHistory(id) {
+export function getVersionHistory(id, envId) {
   return request({
     url: process.env.NECKLACE_API + '/version/' + id,
-    method: 'get'
+    method: 'get',
+    params: { env: envId }
   })
 }
 

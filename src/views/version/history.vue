@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     fetchData() {
-      getVersionHistory(this.$route.query.sceneId).then(response => {
+      getVersionHistory(this.$route.query.sceneId, this.$route.query.env).then(response => {
         this.list = response.data
       })
     }

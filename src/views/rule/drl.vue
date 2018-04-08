@@ -8,7 +8,7 @@
       <span>checkoutpoint</span>
       <el-input style="width: 150px;" class="filter-item" v-model="rule.name"></el-input>
     </el-card>
-    <div v-loading="loading" class="rules" style="margin-top: 20px">
+    <div id="test" v-loading="loading" class="rules" style="margin-top: 20px">
       <el-row v-for="(item, index) in list" :key="index">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -379,6 +379,9 @@ export default {
         }
       }
       this.list.push(rule)
+      var anchor = this.element.query('test')
+      console.log(anchor)
+      document.body.scrollTop = anchor.offsetTop
     },
     handleUpdateRight(rule) {
       this.curRule = rule
