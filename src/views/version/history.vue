@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>当前workflow版本</span>
+        <span>workflow历史版本</span>
       </div>
       <div style="margin-bottom:50px;">
         <el-table :data="list" style="width: 100%">
