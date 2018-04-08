@@ -18,7 +18,7 @@
           </el-table-column>
           <el-table-column width="180" label="workflow">
             <template slot-scope="scope">
-              <span class="link-type" @click="getHistory(scope.row)">{{scope.row.flowId}}</span>
+              <span>{{scope.row.flowId}}</span>
             </template>
           </el-table-column>
           <el-table-column label="更新时间">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { getVersion } from '@/api/rule'
+import { getVersionHistory } from '@/api/rule'
 
 export default {
   data() {
@@ -45,11 +45,8 @@ export default {
     this.fetchData()
   },
   methods: {
-    getHistory(row) {
-      this.$router.push('/engine/version/history?sceneId=' + row.sceneId)
-    },
     fetchData() {
-      getVersion().then(response => {
+      getVersionHistory(this.$route.query.sceneId).then(response => {
         this.list = response.data
       })
     }

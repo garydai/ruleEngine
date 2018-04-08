@@ -29,6 +29,13 @@ export function getVersion() {
   })
 }
 
+export function getVersionHistory(id) {
+  return request({
+    url: process.env.NECKLACE_API + '/version/' + id,
+    method: 'get'
+  })
+}
+
 // todo refine
 export function updateRule(id, data) {
   return request.formPost(process.env.NECKLACE_API + '/drl/update/' + id, data)

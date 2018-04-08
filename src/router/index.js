@@ -75,6 +75,13 @@ export const constantRouterMap = [
         name: 'version',
         component: () => import('@/views/rule/version'),
         meta: { title: '版本', icon: 'example' }
+      },
+      {
+        path: 'version/history',
+        name: 'history',
+        component: () => import('@/views/version/history'),
+        meta: { title: '版本历史', icon: 'example' },
+        hidden: true
       }
     ]
   },
