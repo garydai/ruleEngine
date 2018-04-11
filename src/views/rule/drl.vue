@@ -24,7 +24,7 @@
             <span>描述</span>
             <el-input style="width: 200px;" class="filter-item" placeholder="可选" v-model="list[index].detail.desc.value">
             </el-input>
-            <span>优先级</span>
+            <span>风险等级</span>
             <el-input style="width: 100px;" class="filter-item" placeholder="可选" v-model="list[index].level">
             </el-input>
             <el-button type="danger" size="mini" @click="handleDeleteRule(index)">删除规则
