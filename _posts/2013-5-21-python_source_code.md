@@ -1,10 +1,11 @@
 ---
 layout: default
+
 title: python对象机制
 
 ---
-##python对象机制
-###对象机制
+## python对象机制
+### 对象机制
 在python的世界里，一切都是对象  
 1.对象头结构  
 
@@ -91,11 +92,11 @@ title: python对象机制
 5.Python对象的分类  
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/python_object.PNG)
 
-###整数对象
+### 整数对象
 整数对象是不可变对象(mutable)，即对象内部的值不能被改变，i = i + 1，两个i不是同一个对象，会创建新的i对象。  
 Python维护一个整数对象池，当删除整数对象时，不会回收内存，而把该内存归还给对象池。  
 对于小整数([-5,100])，在解释器初始化的时候已经在对象池中创建了全部小整数对象。  
-####数据结构
+#### 数据结构
 	#define BLOCK_SIZE  1000    /* 1K less typical malloc overhead */
 	#define BHEAD_SIZE  8   /* Enough for a 64-bit pointer */
 	#define N_INTOBJECTS    ((BLOCK_SIZE - BHEAD_SIZE) / sizeof(PyIntObject))
@@ -107,11 +108,11 @@ Python维护一个整数对象池，当删除整数对象时，不会回收内�
 
 sizeof(PyIntObject) 4字节引用计数，4字节类型对象指针，4字节整数值.  
 所以一个block里有82个整数对象，block_list链表链接不同block，还有空闲链表链接空闲的整数对象。
-###字符串对象
+### 字符串对象
 字符串对象也是一个不可变对象，所以连接两个字符串的加法操作都会创建一个新的对象，效率较低.   
 如果连接很多个字符，则需要创建N多次对象，但可以使用字符串对象的join操作来连接多个字符串，该函数首先计算多个字符串的总字节数，申请总字节数的内存，减少申请内存次数。  
 当然该多个字符串存放在list或其他容器里。  
-###列表对象
+### 列表对象
 变长且可变对象   
 
 	typedef struct {
