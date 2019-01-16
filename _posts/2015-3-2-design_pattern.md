@@ -143,7 +143,7 @@ twisted框架有使用该模式
 	    {
 	        PreRequest();
 	        realSubject.Request(); //调用真实主题对象的方法
-	         PostRequest();
+	        PostRequest();
 	    }
 	
 	    public void PostRequest() 
@@ -152,7 +152,64 @@ twisted框架有使用该模式
 	    }
 	}
 
+
+	java
+	interface Hello {
+		void say();
+	}
+
+	class HelloImpl implement Hello {
+		void say() {
+
+		}
+	}
+
+	class Proxy implement Hello {
+		Hello hello;
+		public proxy(Hello h) {
+			hello = h;
+		}
+
+		void say() {
+			xxx;
+			hello.say();
+			xxx;
+		}
+	}
+
+    Proxy p = new Proxy(new HelloImpl());
+	p.say();
+
 	代理类和被代理类继承同一个接口
+
+	上面是静态代理，编译后就有.class文件，动态代理类的字节码在程序运行时由Java反射机制动态生成
+
+
+动态代理：根据接口，动态生成代理类。
+
+        pulbic class Test implement InvocationHandler {
+            private Object o;
+            
+            public Test(Object t) {
+                this.o = t;
+            }
+            
+            pulbic Object invoke(Object proxy, Method method, Object[] arg) {
+                xxx
+                method.invode(o, arg);
+                xxx
+            
+            }
+        }
+        
+        
+        InvocationHandler test = new Test(new HelloImpl());
+        
+        Hello dynamicProxy = (Hello) Proxy.newProxyInstance(实现类.class.getClassLoader(),
+                        实现类.class.getInterfaces(), InvocationHandler实例);
+        
+        dynamicProxy.say();
+        
 
 9.外观模式
 
