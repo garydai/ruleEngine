@@ -56,3 +56,5 @@ services:
       - SPRING_PROFILES_ACTIVE=docker-staging
 ```
 
+### 问题
+docker images -a会显示所有repostory和tag都为空的中间镜像
