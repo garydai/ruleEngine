@@ -1,13 +1,13 @@
 ---
 layout: default
 
-title: filefeat
+title: filefeat+logstash+es+kibana
 
 ---
 
-## filefeat
+## filefeat+logstash+es+kibana
 
-### 安装
+### filefeat
 ```
 wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.6.0-linux-x86_64.tar.gz
 
