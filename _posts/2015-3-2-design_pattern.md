@@ -112,6 +112,8 @@ twisted框架有使用该模式
 
 8.代理模式
 
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/proxy.png)
+
 委托人委托代理人执行事务，代理人也要反馈结果。
 
 委托人声明协议方法，代理人需要实现该协议的方法。
