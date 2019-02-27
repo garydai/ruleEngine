@@ -109,6 +109,7 @@ twisted框架有使用该模式
 7.适配器模式
 
 将一个类通过适配器变成满足另一个接口的类
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/adapter.png)
 
 8.代理模式
 
@@ -187,6 +188,8 @@ twisted框架有使用该模式
 
 	上面是静态代理，编译后就有.class文件，动态代理类的字节码在程序运行时由Java反射机制动态生成
 
+
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/dynamic_proxy.png)
 
 动态代理：根据接口，动态生成代理类。
 
