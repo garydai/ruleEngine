@@ -20,11 +20,19 @@ twisted框架有使用该模式
 
 工厂方法模式
 
-一个工厂类，一个抽象产品类，多个具体产品类；工厂根据传入的参数，创建相应的产品实例。
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/factory-method.png)
+
+定义了一个创建对象的接口，由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+
+一个抽象工厂类，多个具体工厂类，一个抽象产品类，多个具体产品类；具体工厂类生产产品
+
+将生产产品的行为由子类执行
 
 把产品抽象
 
 3.抽象工厂模式
+
+提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
 
 加入抽象工厂
 
@@ -98,7 +106,11 @@ twisted框架有使用该模式
 		    public ProgrammerBuilder setLastName(String lastName) {
 		      this.lastName = lastName;
 		      return this;
-		    }		     
+		    }	
+
+			public Programmer build() {
+				return	new Programmer(this.firstName, this.lastName);
+			}	     
 		}
 
 
@@ -109,6 +121,8 @@ twisted框架有使用该模式
 7.适配器模式
 
 将一个类通过适配器变成满足另一个接口的类
+
+对象适配器
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/adapter.png)
 
 8.代理模式
@@ -276,6 +290,8 @@ twisted框架有使用该模式
 
 15.观察者模式
 
+把观察者放入对象内
+
 多个观察者对象监听某对象，当该对象状态发生变化，则会通知所有观察者。
 
 		public abstract class Subject {
@@ -355,6 +371,9 @@ twisted框架有使用该模式
 
 
 观察类放入被观察类中，被观察类发生改变通知观察类做出反应
+
+
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/observer.png)
 
 16.迭代子模式
 
@@ -604,5 +623,12 @@ twisted框架有使用该模式
 	  给手机加上gps等装饰
   
   	
+
+### 分类
+创建型
+
+行为型
+
+结构型
     
     
