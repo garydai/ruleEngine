@@ -395,6 +395,37 @@ twisted框架有使用该模式
 
 例子：工作队列
 
+```
+public interface Command {
+	void execute();
+}
+
+public class ConcreteCommand implements Command {
+	public void execute() {
+
+	}
+}
+
+public class Invoker {
+	Command command;
+	public void setCommand(Command commandPara) {
+		command = commandPara;
+	}
+
+	public void action {
+		command.execute();
+	}
+}
+
+public class client {
+	public static void main() {
+		Command c = new ConcreteCommand();
+		Invoker i = new Invoker();
+		i.setCommand(c);
+		i.action();
+	}
+}
+```
 19.备忘录模式
 
 20.状态模式
