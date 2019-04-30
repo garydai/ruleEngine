@@ -3,8 +3,8 @@ layout: default
 title: 编程实现k/n的概率
 
 ---
-##编程实现k/n的概率
-###问题
+## 编程实现k/n的概率
+### 问题
 
 	m = random(1, n);   
 	if(m < k)
