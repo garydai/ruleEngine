@@ -25,5 +25,8 @@ title: iptables
 
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/iptables3.png)
 
+
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/iptables4.png)
+
 ### reference
 https://www.zsythink.net/archives/1199
