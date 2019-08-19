@@ -16,21 +16,6 @@ AOP（面向切面编程）
 
 通过autowired等注解，从ioc容器里拿实例
 
-### spring mvc
-使用spring实现mvc设计模式
-
-![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/springmvc.png)
-
-url进入HandlerMapping，找到具体的controller实现类
-
-![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/springmvc2.png)
-
-![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/springmvc3.png)
-
-核心组件
-
-![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/springmvc4.png)
-
 ### spring boot
 
 创建一个基于spring的应用简单

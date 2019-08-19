@@ -125,6 +125,23 @@ twisted框架有使用该模式
 对象适配器
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/adapter.png)
 
+springmvc使用handlerAdpter，根据handler类型，使用确定使用哪个适配器来处理请求
+
+三种handler类型
+
+1.Controller
+
+org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
+
+2.方法handlerMethod
+
+org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+
+3.Servlet
+
+org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
+
+
 8.代理模式
 
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/proxy.png)
