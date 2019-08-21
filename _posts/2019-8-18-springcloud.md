@@ -22,5 +22,6 @@ ap集群
 ### config 分布式配置
 ### sleuth 分布式链路跟踪 + zipkin 可视化
 
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/springcloud.png)
 
 
