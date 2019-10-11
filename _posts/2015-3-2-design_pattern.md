@@ -107,7 +107,7 @@ twisted框架有使用该模式
 		      this.lastName = lastName;
 		      return this;
 		    }	
-
+	
 			public Programmer build() {
 				return	new Programmer(this.firstName, this.lastName);
 			}	     
@@ -188,36 +188,35 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 	}
 
 
-	java
-	interface Hello {
+	Interface Hello {
 		void say();
 	}
-
+	
 	class HelloImpl implement Hello {
 		void say() {
-
+	
 		}
 	}
-
+	
 	class Proxy implement Hello {
 		Hello hello;
 		public proxy(Hello h) {
 			hello = h;
 		}
-
+	
 		void say() {
 			xxx;
 			hello.say();
 			xxx;
 		}
 	}
-
-    Proxy p = new Proxy(new HelloImpl());
+	
+	Proxy p = new Proxy(new HelloImpl());
 	p.say();
-
+	
 	代理类和被代理类继承同一个接口
-
-	上面是静态代理，编译后就有.class文件，动态代理类的字节码在程序运行时由Java反射机制动态生成
+	
+	上面是静态代理，编译后就有.class文件，动态代理类的字节码在程序运行时由Java反射机制动态生成
 
 
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/dynamic_proxy.png)
@@ -238,15 +237,16 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
             
             }
         }
-        
-        
+
+
+​        
         InvocationHandler test = new Test(new HelloImpl());
         
         Hello dynamicProxy = (Hello) Proxy.newProxyInstance(实现类.class.getClassLoader(),
                         实现类.class.getInterfaces(), InvocationHandler实例);
         
         dynamicProxy.say();
-        
+
 
 9.外观模式
 
@@ -299,7 +299,7 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 	            context.execute();
 	        }
 	    }
-	    
+
 
 14.模板方法模式
 
@@ -343,9 +343,10 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 		        }
 		    }
 		}
-		
-		
-		
+
+
+​		
+​		
 		public class ConcreteSubject extends Subject{
 		    
 		    private String state;
@@ -370,7 +371,7 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 		     */
 		    public void update(String state);
 		}
-
+	
 		public class ConcreteObserver implements Observer {
 		    //观察者的状态
 		    private String observerState;
@@ -464,7 +465,7 @@ public class client {
 	}
 	
 	public class StopState implements State {
-
+	
 	   public void doAction(Context context) {
 	      System.out.println("Player is in stop state");
 	      context.setState(this);    
@@ -474,8 +475,9 @@ public class client {
 	      return "Stop State";
 	   }
 	}
-	
-	
+
+
+​	
 	public class Context {
 	   private State state;
 	
@@ -491,7 +493,7 @@ public class client {
 	      return state;
 	   }
 	}
-	
+
 
 	public class StatePatternDemo {
 	   public static void main(String[] args) {
@@ -589,9 +591,9 @@ public class client {
 	}
 	
 	class TerminalExpression extends  AbstractExpression {
-       public  void interpret(Context ctx) {
-              //终结符表达式的解释操作
-       }
+	   public  void interpret(Context ctx) {
+	          //终结符表达式的解释操作
+	   }
 	}
 
 
@@ -600,7 +602,7 @@ public class client {
 ![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/decorator.png)
 咖啡是一种饮料，咖啡的本质是咖啡豆+水磨出来的。咖啡店现在要卖各种口味的咖啡，如果不使用装饰模式，那么在销售系统中，各种不一样的咖啡都要产生一个类，如果有4中咖啡豆，5种口味，那么将要产生至少20个类（不包括混合口味），非常麻烦。使用了装饰模式，只需要11个类即可生产任意口味咖啡（包括混合口味
 
-	
+
 		public abstract class AbstractCellPhone
 		{
 		        public abstract string CallNumber();
@@ -619,8 +621,9 @@ public class client {
 	            return "NokiaPhone send a message to somebody";
 	        }
 	   }
+
    
-   
+
 	   public abstract class Decorator : AbstractCellPhone
 	    {
 	        AbstractCellPhone _phone;
@@ -640,9 +643,10 @@ public class client {
 	            return _phone.SendMessage();
 	        }
 	  }
-	  
-	  
-		  
+
+
+​	  
+​		  
 		  public class DecoratorGPS : Decorator
 	    {
 	        public DecoratorGPS(AbstractCellPhone phone)
@@ -676,10 +680,12 @@ public class client {
 	            return base.SendMessage() + " with BlueTooth";
 	        }
 	 }
-	 
-	  
+
+
+​	  
 	  给手机加上gps等装饰
-  
+
+
   	
 
 ### 分类
