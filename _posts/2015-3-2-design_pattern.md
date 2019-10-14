@@ -240,8 +240,8 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 
 
 ​        
-        InvocationHandler test = new Test(new HelloImpl());
-        
+​        InvocationHandler test = new Test(new HelloImpl());
+​        
         Hello dynamicProxy = (Hello) Proxy.newProxyInstance(实现类.class.getClassLoader(),
                         实现类.class.getInterfaces(), InvocationHandler实例);
         
@@ -347,8 +347,8 @@ org.springframework.web.servlet.handler.SimpleServletHandlerAdapter
 
 ​		
 ​		
-		public class ConcreteSubject extends Subject{
-		    
+​		public class ConcreteSubject extends Subject{
+​		    
 		    private String state;
 		    
 		    public String getState() {
@@ -478,9 +478,9 @@ public class client {
 
 
 ​	
-	public class Context {
-	   private State state;
-	
+​	public class Context {
+​	   private State state;
+​	
 	   public Context(){
 	      state = null;
 	   }
@@ -624,6 +624,7 @@ public class client {
 
    
 
+
 	   public abstract class Decorator : AbstractCellPhone
 	    {
 	        AbstractCellPhone _phone;
@@ -645,15 +646,13 @@ public class client {
 	  }
 
 
-​	  
-​		  
-		  public class DecoratorGPS : Decorator
-	    {
-	        public DecoratorGPS(AbstractCellPhone phone)
-	            : base(phone)
-	        { }
-	 
-	        public override string CallNumber()
+​	 		 
+
+	 public class DecoratorGPS : Decorator
+	 {
+	   public DecoratorGPS(AbstractCellPhone phone) : base(phone){ }
+	   
+	   public override string CallNumber()
 	        {
 	            return base.CallNumber() + " with GPS";
 	        }
@@ -683,7 +682,7 @@ public class client {
 
 
 ​	  
-	  给手机加上gps等装饰
+​	  给手机加上gps等装饰
 
 
   	

@@ -30,3 +30,5 @@ simple logging facade for java（门面）
 spring4采用jcl，默认使用log4j框架，spring 5采用spring-jcl日志，改写了jcl，默认用jul
 
 
+
+![](https://github.com/garydai/garydai.github.com/raw/master/_posts/pic/javalog.jpg)
