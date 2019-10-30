@@ -1,4 +1,0 @@
-garydai.github.com
-==================
-
-blog
