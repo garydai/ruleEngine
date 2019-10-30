@@ -1,0 +1,57 @@
+body {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 15px;
+    margin: 5% 20% 5% 20%;
+    padding: 2% 5% 5% 5%;
+    width: 50%;
+    line-height: 150%;
+    border: 1px solid LightGrey;
+    background-color:#f7f6f1;
+}
+
+H1 {
+    font-family: STKaiti, "Kaiti SC", "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+H2 {
+    font-family: STKaiti, "Kaiti SC", "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin-bottom: 60px;
+    margin-bottom: 40px;
+    padding: 5px;
+    border-bottom: 2px LightGrey solid;
+    width: 90%;
+    line-height: 150%;
+    color: DarkGreen;
+}
+
+
+H3 {
+    font-family: STKaiti, "Kaiti SC", "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px LightGrey solid;
+    width: 80%;
+    line-height: 150%;
+    color: DarkBlue;
+}
+H4{
+    font-family: STKaiti, "Kaiti SC", "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px LightGrey solid;
+    width: 70%;
+    line-height: 150%;
+    color: DarkCyan;
+}
+H5{
+    font-family: STKaiti, "Kaiti SC", "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px LightGrey solid;
+    width: 60%;
+    line-height: 150%;
+    color: #68228b
+}
+
+code,pre{padding:0 3px 2px;font-family:Menlo,Monaco,"Courier New",monospace;font-size:12px;color:#333333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+pre{display:block;padding:8.5px;margin:0 0 9px;font-size:12px;line-height:18px;background-color:#f5f5f5;border:1px solid #ccc;border:1px solid rgba(0, 0, 0, 0.15);-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;white-space:pre;white-space:pre-wrap;word-break:break-all;word-wrap:break-word;}pre.prettyprint{margin-bottom:18px;}
