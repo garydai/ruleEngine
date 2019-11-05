@@ -1,6 +1,6 @@
 spring.datasource:
   #  项目数据库:
-  url: jdbc:mysql://localhost:3306/wz_csf?useUnicode=true&characterEncoding=utf8&useSSL=false
+  url: jdbc:mysql://localhost:3306/sally?useUnicode=true&characterEncoding=utf8&useSSL=false
   username: root
   password:
   type: com.alibaba.druid.pool.DruidDataSource

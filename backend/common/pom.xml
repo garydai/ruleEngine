@@ -9,16 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>account-svc</artifactId>
+    <artifactId>common</artifactId>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
@@ -49,13 +46,7 @@
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.sally</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.0</version>
+            <artifactId>mybatis-plus</artifactId>
         </dependency>
     </dependencies>
 </project>

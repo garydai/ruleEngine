@@ -12,9 +12,7 @@ spring:
     tomcat:
       test-while-idle: true
       validation-query: SELECT 1
-  jpa:
-    hibernate:
-      ddl-auto: validate
+
 
 staffjoy:
   common:
