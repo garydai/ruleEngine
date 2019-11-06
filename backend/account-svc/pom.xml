@@ -8,6 +8,7 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>1.0.0</version>
 
     <artifactId>account-svc</artifactId>
 
@@ -56,6 +57,15 @@
             <groupId>xyz.sally</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>xyz.sally</groupId>
+            <artifactId>account-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -17,4 +17,13 @@ public interface AccountDao extends BaseMapper<Account> {
      * @return
      */
     Account findAccountByName(String username);
+
+    /**
+     * 根据姓名、密码获取用户信息
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    Account findAccountByNamePwd(String username, String password);
 }

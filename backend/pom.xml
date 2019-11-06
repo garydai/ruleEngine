@@ -22,6 +22,9 @@
     <modules>
         <module>account-svc</module>
         <module>common</module>
+        <module>account-api</module>
+        <module>gateway</module>
+        <module>eureka</module>
     </modules>
 
     <dependencyManagement>
@@ -77,11 +80,6 @@
             </dependency>
 
             <!-- Common -->
-            <dependency>
-                <groupId>xyz.sally</groupId>
-                <artifactId>common-lib</artifactId>
-                <version>1.0.1</version>
-            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>

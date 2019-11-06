@@ -1,6 +1,7 @@
 package xyz.sally.account.service;
 
 import xyz.sally.account.domain.dto.AccountDto;
+import xyz.sally.account.domain.request.LoginRequest;
 
 /**
  * @author daitechang
@@ -14,4 +15,12 @@ public interface AccountService {
      * @return
      */
     AccountDto getAccountByUsername(String username);
+
+    /**
+     * 根据用户名、密码查找账户
+     *
+     * @param loginRequest
+     * @return
+     */
+    AccountDto getAccountByUsernamePwd(LoginRequest loginRequest);
 }

@@ -8,4 +8,10 @@
        FROM account
        WHERE username = #{username}
     </select>
+
+    <select id="findAccountByNamePwd" resultType="xyz.sally.account.domain.dmo.Account">
+       SELECT *
+       FROM account
+       WHERE username = #{username} and password = #{password}
+    </select>
 </mapper>
