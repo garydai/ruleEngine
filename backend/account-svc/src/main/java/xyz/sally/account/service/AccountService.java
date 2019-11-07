@@ -23,4 +23,12 @@ public interface AccountService {
      * @return
      */
     AccountDto getAccountByUsernamePwd(LoginRequest loginRequest);
+
+    /**
+     * 登陆
+     *
+     * @param loginRequest
+     * @return
+     */
+    boolean login(LoginRequest loginRequest);
 }

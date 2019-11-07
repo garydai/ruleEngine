@@ -1,6 +1,7 @@
 package xyz.sally.account.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import xyz.sally.account.domain.dmo.Account;
 
@@ -25,5 +26,5 @@ public interface AccountDao extends BaseMapper<Account> {
      * @param password
      * @return
      */
-    Account findAccountByNamePwd(String username, String password);
+    Account findAccountByNamePwd(@Param("username") String username, @Param("password") String password);
 }

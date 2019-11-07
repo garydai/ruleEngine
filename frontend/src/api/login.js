@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export function login(username, password) {
-  return request.formPost(process.env.NECKLACE_API + '/user/login',
+  return request.jsonPost(process.env.GATEWAY_API + '/account-service/sally/v1/account/login',
     {
       username,
       password

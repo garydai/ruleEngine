@@ -1,19 +1,24 @@
 package xyz.sally.common.api;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import xyz.sally.common.enums.ErrorCode;
 import xyz.sally.common.enums.ResponseCode;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Response {
 
     private int code;
 
     private String message;
 
-    public Response() {
-        this.code = ResponseCode.SUCCESS.getCode();
-        this.message = ResponseCode.SUCCESS.getMessage();
+    public Response(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
     }
 
 //

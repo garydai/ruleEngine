@@ -42,4 +42,8 @@ public class AccountServiceImpl implements AccountService {
 
         return modelMapper.map(account, AccountDto.class);
     }
+
+    public boolean login(LoginRequest loginRequest) {
+        return accountDao.findAccountByNamePwd(loginRequest.getUsername(), loginRequest.getPassword()) != null;
+    }
 }

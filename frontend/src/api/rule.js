@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(id) {
   return request({
-    url: process.env.NECKLACE_API + '/drl/list',
+    url: process.env.GATEWAY_API + '/drl/list',
     method: 'get',
     params: { sceneId: id }
   })
@@ -24,7 +24,7 @@ export function getActions() {
 
 export function getVersion(envId) {
   return request({
-    url: process.env.NECKLACE_API + '/version',
+    url: process.env.GATEWAY_API + '/version',
     method: 'get',
     params: { env: envId }
   })
@@ -32,7 +32,7 @@ export function getVersion(envId) {
 
 export function getVersionHistory(id, envId) {
   return request({
-    url: process.env.NECKLACE_API + '/version/' + id,
+    url: process.env.GATEWAY_API + '/version/' + id,
     method: 'get',
     params: { env: envId }
   })
@@ -40,11 +40,11 @@ export function getVersionHistory(id, envId) {
 
 // todo refine
 export function updateRule(id, data) {
-  return request.formPost(process.env.NECKLACE_API + '/drl/update/' + id, data)
+  return request.formPost(process.env.GATEWAY_API + '/drl/update/' + id, data)
 }
 
 export function addRule(data) {
-  return request.formPost(process.env.NECKLACE_API + '/drl/add', data)
+  return request.formPost(process.env.GATEWAY_API + '/drl/add', data)
 }
 
 export function executeRule(data) {
@@ -56,7 +56,7 @@ export function testRule(data) {
 }
 
 export function deleteDrl(data) {
-  return request.formPost(process.env.NECKLACE_API + '/drl/delete', data)
+  return request.formPost(process.env.GATEWAY_API + '/drl/delete', data)
 }
 
 export function activateRule(data) {
@@ -65,28 +65,28 @@ export function activateRule(data) {
 
 export function getDrl(id) {
   return request({
-    url: process.env.NECKLACE_API + '/drl/' + id,
+    url: process.env.GATEWAY_API + '/drl/' + id,
     method: 'get'
   })
 }
 
 export function insertFlow(data) {
-  return request.formPost(process.env.NECKLACE_API + '/workflow/add', data)
+  return request.formPost(process.env.GATEWAY_API + '/workflow/add', data)
 }
 
 export function getFlow(data) {
   return request({
-    url: process.env.NECKLACE_API + '/workflow/latest',
+    url: process.env.GATEWAY_API + '/workflow/latest',
     method: 'get',
     params: data
   })
 }
 
 export function deployTest(flowId) {
-  return request.formPost(process.env.NECKLACE_API + '/deploy/test/' + flowId)
+  return request.formPost(process.env.GATEWAY_API + '/deploy/test/' + flowId)
 }
 
 export function deployProd(flowId) {
-  return request.formPost(process.env.NECKLACE_API + '/deploy/prod/' + flowId)
+  return request.formPost(process.env.GATEWAY_API + '/deploy/prod/' + flowId)
 }
 

@@ -18,7 +18,9 @@ public enum ResponseCode implements ErrorCode {
     /**
      * 服务器内部错误
      */
-    INTERNAL_SERVER_ERROR(5000, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(5000, "Internal Server Error"),
+
+    FAIL(400, "fail");
 
     private int code;
     private String message;

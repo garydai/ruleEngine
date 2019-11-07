@@ -7,6 +7,7 @@ import xyz.sally.account.domain.response.AccountDtoResponse;
 import xyz.sally.account.service.AccountService;
 import xyz.sally.account.domain.request.LoginRequest;
 import xyz.sally.common.api.Response;
+import xyz.sally.common.enums.ResponseCode;
 
 /**
  * @author daitechang
@@ -24,15 +25,17 @@ public class AccountController {
 //        return accountService.getAccountByUsername(name);
 //    }
 
-    @PostMapping
-    public AccountDtoResponse login(@RequestBody LoginRequest request) {
-        return new AccountDtoResponse(accountService.getAccountByUsernamePwd(request));
-    }
+//    @PostMapping
+//    public AccountDtoResponse login(@RequestBody LoginRequest request) {
+//        return new AccountDtoResponse(accountService.getAccountByUsernamePwd(request));
+//    }
 
     @PostMapping(path = "/login")
-    public AccountDtoResponse login2(@RequestBody LoginRequest request) {
-        AccountDto accountDto = AccountDto.builder().username("test").build();
+    public Response login(@RequestBody LoginRequest request) {
+        if (accountService.login(request)) {
+            return new Response(ResponseCode.SUCCESS);
+        }
 
-        return new AccountDtoResponse(accountDto);
+        return new Response(ResponseCode.FAIL);
     }
 }

@@ -9,7 +9,6 @@ const service = axios.create({
   baseURL: '/', // api的base_url
   timeout: 15000 // 请求超时时间
 })
-
 // request拦截器
 service.interceptors.request.use(config => {
   if (store.getters.token) {
@@ -69,6 +68,10 @@ service.formPost = (url, params) => {
     arrayFormat: 'brackets'
   })
   return service.post(url, dataStr)
+}
+
+service.jsonPost = (url, params) => {
+  return service.post(url, params)
 }
 
 export default service
