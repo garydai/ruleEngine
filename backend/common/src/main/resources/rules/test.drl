@@ -1,0 +1,11 @@
+package xyz.sally.testdrl
+import xyz.sally.commom.fact.*
+
+rule "Hello World"
+    when
+        $a:Input(age > 10);
+    then
+       System.out.println("test");
+
+end
+

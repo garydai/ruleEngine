@@ -1,0 +1,59 @@
+spring.datasource:
+  #  项目数据库:
+  url: jdbc:mysql://localhost:3306/sally?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password:
+  type: com.alibaba.druid.pool.DruidDataSource
+  driver-class-name: com.mysql.jdbc.Driver
+  #获取连接时最大等待时间，单位毫秒
+  druid.max-wait: 10000
+  #初始化时建立物理连接的个数
+  druid.initial-size: 10
+  #最大连接池数量
+  druid.max-active: 100
+  #最小连接数
+  druid.min-idle: 10
+  #检测连接的间隔时间
+  druid.time-between-eviction-runs-millis: 3600000
+  #连接的最小生存时间
+  druid.min-evictable-idle-time-millis: 300000
+  #连接最大存活时间
+  druid.max-evictable-idle-time-millis: 900000
+  #检测连接是否有效
+  druid.test-while-idle: true
+  #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+  druid.test-on-borrow: false
+  #用来检测连接是否有效的sql
+  druid.validation-query: SELECT 1
+
+  #连接池监控配置
+  #通过别名的方式配置扩展插件，常用的插件有：
+  #监控统计用的filter:stat日志用的filter:log4j防御sql注入的filter:wall
+  druid.filters: stat
+  druid.statview-servlet.url-pattern: /druid/*
+  #允许清空统计数据
+  druid.statview-servlet.reset-enable: true
+  #监控后台管理账号和密码
+  druid.statview-servlet.login-username: root
+  druid.statview-servlet.login-password: 123456
+  druid.web-stat-filter.url-pattern: /*
+  druid.web-stat-filter.exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka/
+
+server:
+  port: 8081
+sally:
+  email-service-endpoint: http://localhost:8088
+  company-service-endpoint: http://localhost:8082
+  bot-service-endpoint: http://localhost:8087
+  account-service-endpoint: http://localhost:8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
