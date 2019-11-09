@@ -17,6 +17,7 @@
         <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
         <druid-version>1.1.9</druid-version>
+        <drools.version>7.0.0.Final</drools.version>
     </properties>
 
     <modules>
