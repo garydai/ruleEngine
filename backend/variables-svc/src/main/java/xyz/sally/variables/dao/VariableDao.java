@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import xyz.sally.variables.domain.dmo.Variable;
+import xyz.sally.variablesapi.domain.dto.VariableDto;
 
 import java.util.List;
 
@@ -19,4 +20,11 @@ public interface VariableDao extends BaseMapper<Variable> {
      * @return
      */
     List<Variable> listVariable();
+
+    /**
+     * 插入变量
+     * @param variableDto
+     * @return
+     */
+    boolean addVariable(@Param("variableDto") VariableDto variableDto);
 }

@@ -9,6 +9,8 @@ import xyz.sally.account.domain.request.LoginRequest;
 import xyz.sally.common.api.Response;
 import xyz.sally.common.enums.ResponseCode;
 
+import javax.validation.Valid;
+
 /**
  * @author daitechang
  * @create: 2019-11-05
@@ -31,7 +33,7 @@ public class AccountController {
 //    }
 
     @PostMapping(path = "/login")
-    public Response login(@RequestBody LoginRequest request) {
+    public Response login(@RequestBody @Valid LoginRequest request) {
         if (accountService.login(request)) {
             return new Response(ResponseCode.SUCCESS);
         }

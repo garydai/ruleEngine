@@ -3,6 +3,11 @@
     <el-card class="box-card">
       <div style="margin-bottom:50px;">
         <el-table :data="list" style="width: 100%">
+          <el-table-column width="180" label="序号">
+            <template slot-scope="scope">
+              <span>{{scope.$index}}</span>
+            </template>
+          </el-table-column>
           <el-table-column width="180" label="变量名">
             <template slot-scope="scope">
               <span>{{list[scope.$index].name}}</span>

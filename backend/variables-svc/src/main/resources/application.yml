@@ -23,3 +23,10 @@ staffjoy:
   company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
   bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service:8080}
   intercom-access-token: ${INTERCOM_ACCESS_TOKEN}
+
+logging:
+  level:
+    xyz:
+      sally:
+        variables:
+          dao: debug

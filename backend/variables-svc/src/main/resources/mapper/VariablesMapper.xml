@@ -8,4 +8,7 @@
        FROM variable
     </select>
 
+    <insert id="addVariable">
+        insert into variable (`name`, `type`, `description`) value (#{variableDto.name}, #{variableDto.type}, #{variableDto.description})
+    </insert>
 </mapper>
