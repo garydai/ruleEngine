@@ -26,6 +26,8 @@
         <module>account-api</module>
         <module>gateway</module>
         <module>eureka</module>
+        <module>variables</module>
+        <module>variables-svc</module>
     </modules>
 
     <dependencyManagement>

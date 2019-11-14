@@ -43,6 +43,26 @@ public class FactGenerator {
     }
 
     public static void main(String[] args) throws Exception {
+        String s = new String("1");
+        s.intern();
+        String s2 = "1";
+        System.out.println(s == s2);
+
+        String s3 = new String("1") + new String("1");
+        s3.intern();
+        String s4 = "11";
+        System.out.println(s3 == s4);
+
+        String str1 = "abc";
+        String str2 = new String("def");
+        String str3 = "abc";
+        String str4 = str2.intern();
+        String str5 = "def";
+        System.out.println(str1 == str3);//true
+        System.out.println(str2 == str4);//false
+        System.out.println(str4 == str5);//true
+
+
         gen();
     }
 }

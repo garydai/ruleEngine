@@ -85,19 +85,30 @@ export const constantRouterMap = [
       }
     ]
   },
+  // {
+  //   path: '/variables',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'variables',
+  //       component: () => import('@/views/variables/index'),
+  //       meta: { title: '变量', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     path: '/variables',
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: 'index2',
         name: 'variables',
-        component: () => import('@/views/variables/index'),
+        component: () => import('@/views/variables/index2'),
         meta: { title: '变量', icon: 'form' }
       }
     ]
   },
-
   { path: '*', redirect: '/404', hidden: true }
 ]
 
