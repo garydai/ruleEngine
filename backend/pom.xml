@@ -18,6 +18,7 @@
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
         <druid-version>1.1.9</druid-version>
         <drools.version>7.0.0.Final</drools.version>
+        <fastjson-version>1.2.58</fastjson-version>
     </properties>
 
     <modules>
@@ -26,8 +27,11 @@
         <module>account-api</module>
         <module>gateway</module>
         <module>eureka</module>
-        <module>variables</module>
+        <module>variables-api</module>
         <module>variables-svc</module>
+        <module>core</module>
+        <module>engine-svc</module>
+        <module>engine-api</module>
     </modules>
 
     <dependencyManagement>
@@ -99,9 +103,14 @@
                 <version>3.2.0</version>
             </dependency>
             <dependency>
-                <groupId>xzy.sally</groupId>
+                <groupId>xyz.sally</groupId>
                 <artifactId>common</artifactId>
                 <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

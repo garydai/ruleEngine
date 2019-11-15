@@ -46,11 +46,9 @@ eureka:
       defaultZone: http://localhost:9999/eureka/
 
 server:
-  port: 8082
+  port: 8081
 sally:
-  email-service-endpoint: http://localhost:8088
-  company-service-endpoint: http://localhost:8082
-  bot-service-endpoint: http://localhost:8087
+  engine-service-endpoint: http://localhost:8083
   account-service-endpoint: http://localhost:8081
 management:
   endpoints:

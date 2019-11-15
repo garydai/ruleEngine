@@ -36,55 +36,55 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-  {
-    path: '/engine',
-    component: Layout,
-    redirect: '/engine/scene',
-    name: 'engine',
-    meta: { title: '规则引擎', icon: 'example' },
-    children: [
-      {
-        path: 'scene',
-        name: 'scene',
-        component: () => import('@/views/rule/index'),
-        meta: { title: '场景', icon: 'table' }
-      },
-      {
-        path: 'rule',
-        name: 'rule',
-        hidden: true,
-        component: () => import('@/views/rule/workflow'),
-        meta: { title: '工作流' }
-      },
-      {
-        path: 'test',
-        name: 'test',
-        component: () => import('@/views/rule/test'),
-        hidden: true,
-        meta: { title: '测试', icon: 'tree' }
-      },
-      {
-        path: 'drl',
-        name: 'drl',
-        component: () => import('@/views/rule/drl'),
-        hidden: true,
-        meta: { title: '规则' }
-      },
-      {
-        path: 'version',
-        name: 'version',
-        component: () => import('@/views/rule/version'),
-        meta: { title: '版本', icon: 'example' }
-      },
-      {
-        path: 'version/history',
-        name: 'history',
-        component: () => import('@/views/version/history'),
-        meta: { title: '版本历史', icon: 'example' },
-        hidden: true
-      }
-    ]
-  },
+  // {
+  //   path: '/engine',
+  //   component: Layout,
+  //   redirect: '/engine/scene',
+  //   name: 'engine',
+  //   meta: { title: '规则引擎', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'scene',
+  //       name: 'scene',
+  //       component: () => import('@/views/rule/index'),
+  //       meta: { title: '场景', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'rule',
+  //       name: 'rule',
+  //       hidden: true,
+  //       component: () => import('@/views/rule/workflow'),
+  //       meta: { title: '工作流' }
+  //     },
+  //     {
+  //       path: 'test',
+  //       name: 'test',
+  //       component: () => import('@/views/rule/test'),
+  //       hidden: true,
+  //       meta: { title: '测试', icon: 'tree' }
+  //     },
+  //     {
+  //       path: 'drl',
+  //       name: 'drl',
+  //       component: () => import('@/views/rule/drl'),
+  //       hidden: true,
+  //       meta: { title: '规则' }
+  //     },
+  //     {
+  //       path: 'version',
+  //       name: 'version',
+  //       component: () => import('@/views/rule/version'),
+  //       meta: { title: '版本', icon: 'example' }
+  //     },
+  //     {
+  //       path: 'version/history',
+  //       name: 'history',
+  //       component: () => import('@/views/version/history'),
+  //       meta: { title: '版本历史', icon: 'example' },
+  //       hidden: true
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/variables',
   //   component: Layout,
@@ -97,6 +97,18 @@ export const constantRouterMap = [
   //     }
   //   ]
   // },
+  {
+    path: '/rule2',
+    component: Layout,
+    children: [
+      {
+        path: 'drl',
+        name: 'rule',
+        component: () => import('@/views/rule2/drl'),
+        meta: { title: '规则', icon: 'form' }
+      }
+    ]
+  },
   {
     path: '/variables',
     component: Layout,
