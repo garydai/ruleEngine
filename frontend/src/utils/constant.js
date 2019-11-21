@@ -22,6 +22,18 @@ const mmm = mm.reduce((acc, cur) => {
 }, {})
 
 module.exports = {
+  op: [
+    'or',
+    'and'
+  ],
+  expressionOp: [
+    '>',
+    '<',
+    '>=',
+    '<=',
+    '=',
+    '!='
+  ],
   relationMap: {
     and: '并且',
     or: '或者'

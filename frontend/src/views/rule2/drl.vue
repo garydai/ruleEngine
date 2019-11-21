@@ -39,7 +39,7 @@
                 <el-table-column width="180">
                   <template slot-scope="scope">
                     <el-select filterable v-if="scope.$index % 2 == 0" style="width: 150px" class="filter-item" v-model="scope.row.l" clearable>
-                      <el-option v-for="t in Object.keys(variables)" :key="t" :label="mapper[t]" :value="mapper[t]">
+                      <el-option v-for="t in variables" :key="t.name" :label="t.name" :value="t.name">
                       </el-option>
                     </el-select>
                   </template>
@@ -47,27 +47,23 @@
                 <el-table-column width="180">
                   <template slot-scope="scope">
                     <el-select v-if="scope.$index % 2 == 0 && scope.row.l == ''" style="width: 150px" class="filter-item" v-model="scope.row.o" clearable>
-                      <el-option :value="''">
+                      <el-option v-for="t in expressionOp" :key="t" :label="t" :value="t">
                       </el-option>
                     </el-select>
                     <el-select v-else-if="scope.$index % 2 == 0 && scope.row.l != ''" style="width: 150px" class="filter-item" v-model="scope.row.o" clearable>
-                      <el-option v-for="t in op[scope.$index % 2][variables[mapper[scope.row.l]].type]" :key="t" :label="t" :value="t">
+                      <el-option v-for="t in expressionOp" :key="t" :label="t" :value="t">
                       </el-option>
                     </el-select>
                     <el-select v-else-if="scope.$index % 2 == 1" style="width: 150px" class="filter-item" v-model="scope.row.o" clearable>
-                      <el-option v-for="t in op[scope.$index % 2]" :key="t" :label="t" :value="t">
+                      <el-option v-for="t in op" :key="t" :label="t" :value="t">
                       </el-option>
                     </el-select>
                   </template>
                 </el-table-column>
                 <el-table-column>
                   <template slot-scope="scope">
-                    <span v-if="scope.$index % 2 == 0" class="link-type" @click="handleUpdateRight(scope.row)">
-                      <div v-if="scope.row.r == ''">修改</div>
-                      <div v-else>{{scope.row.r}}</div>
-                    </span>
-                    <!--<el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item" :placeholder="list[index].rule[scope.$index].r" v-model="list[index].rule[scope.$index].r">-->
-                    <!--</el-input>-->
+                    <el-input v-if="scope.$index % 2 == 0" style="width: 150px;" class="filter-item" :placeholder="scope.row.r" v-model="scope.row.r">
+                    </el-input>
                   </template>
                 </el-table-column>
             </el-table>       
@@ -81,72 +77,16 @@
         <div style="margin-bottom:50px;">
           <template>
             <el-radio v-model="hitRadio" label="or">满足任意规则</el-radio>
-            <el-radio v-model="hitRadio" label="and">满足所有规则</el-radio>  
-            <el-radio v-model="hitRadio" label="">使用表达式</el-radio>            
+            <el-radio v-model="hitRadio" label="and">满足所有规则</el-radio>              
           </template>
         </div>
       </el-card>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>表达式</span>
-          <el-button style="right: 40px; position: absolute;" type="primary" size="small" @click="addRootExpression()">新增根表达式</el-button>
-        </div>
-        <div class="block">
-          <el-tree
-            :data="flow"
-            default-expand-all
-            :expand-on-click-node="false"
-            :render-content="renderContent">
-          </el-tree>
-        </div>
-      </el-card>
     </div>
-    <el-dialog :visible.sync="flowFormVisible">
-      <el-select v-model="flowSelect" placeholder="请选择操作符" filterable clearable>
-        <el-option v-for="item in operations" :key="item.op" :label="item.op" :value="item.op"></el-option>
-      </el-select>或
-      <el-select v-model="flowRuleSelect" placeholder="请选择规则" filterable clearable>
-        <el-option v-for="item in list" :key="item.id" :label="item.name" :value="item.name"></el-option>
-      </el-select>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="flowFormVisible = false">取消</el-button>
-        <el-button type="primary" @click="saveExpression()">保存</el-button>
-      </div>
-    </el-dialog>
-    <el-dialog :visible.sync="dialogFormVisible">
-      <!--<el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>
-      <el-select v-model="form.determine" placeholder="请选择" :disabled="curRuleLeftType !== 'Boolean'" clearable>
-        <el-option v-for="t in boolList" :key="t" :label="t" :value="t">
-        </el-option>
-      </el-select>
-      <el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>-->
-      <el-form label-width="100px" class="demo-ruleForm">
-        <el-form-item label="数值">
-          <el-input v-model="form.value" placeholder="请填写数值" :disabled="curRuleLeftType === 'Boolean'"></el-input>
-        </el-form-item>
-        <el-form-item label="是否">
-          <el-select v-model="form.determine" placeholder="请选择" :disabled="curRuleLeftType !== 'Boolean'" clearable>
-            <el-option v-for="t in boolList" :key="t" :label="t" :value="t">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="变量">
-          <el-select v-model="form.variable" placeholder="请选择变量" clearable filterable>
-            <el-option v-for="t in Object.keys(variables)" :key="t" :label="mapper[t]" :value="mapper[t]">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button type="primary" @click="saveRightValue()">保存</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
 <script>
-import { getDrl, addRule, getVariables, updateRule } from '@/api/rule'
+import { getDrl, addRule, updateRule } from '@/api/rule'
 import { listVariable } from '@/api/variable'
 import { clone } from '@/utils/util'
 const constant = require('@/utils/constant')
@@ -164,11 +104,12 @@ export default {
       formRule: {
       },
       list: [],
-      variables: {},
+      variables: [],
       // todo refine
       listDisplay: [],
       mapper: {}, // chinese->english
       op: [],
+      expressionOp: [],
       dialogFormVisible: false,
       curRule: {},
       curRuleLeftType: '',
@@ -192,28 +133,23 @@ export default {
   },
   created() {
     this.mapper = constant.m
-    this.op = constant.opMap
+    this.op = constant.op
+    this.expressionOp = constant.expressionOp
     this.fetchData()
   },
   methods: {
     fetchData() {
       listVariable().then(response => {
         this.variables = response.data.list
-        var nul = {
-          'type': 'null',
-          'displayName': '空值'
-        }
-        this.variables['null'] = nul
-
-        for (var key in this.variables) {
-          this.mapper[this.variables[key].displayName] = key
-          this.mapper[key] = this.variables[key].displayName
-        }
+        var mock = '{"ver":1,"rules":[{"name":"联系方式中选取的相应APP是否在手机上(whatsapp、facebook、twitter、instagram)","rule":[{"l":"age","o":">","r":"1","r_t":"int"},{"l":"","o":"or","r":"","r_t":""},{"l":"age","o":"<","r":"10","r_t":"int"}]}],"expression":{"coarse":"or","fine":[]},"variables":["facebookOnPhone","whatsappOnPhone","twitterOnPhone","instagramOnPhone","loanAppCount","callTime1to5Pct","callLogPhones","homePhone","relativePhone","contactPhones","homeCity","workCity","positiveSmsCount"]}'
+        var i = JSON.parse(mock)
+        this.list = i.rules
+        console.log(i.rules)
         if (Object.keys(this.$route.query).indexOf('id') === -1) {
           return
         }
         this.loading = true
-        getDrl(this.$route.query.id).then(response => {
+        getDrl(1).then(response => {
           this.rule = response.data
           var input = JSON.parse(response.data.input)
           this.hitRadio = input.expression.coarse

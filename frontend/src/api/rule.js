@@ -65,7 +65,7 @@ export function activateRule(data) {
 
 export function getDrl(id) {
   return request({
-    url: process.env.GATEWAY_API + '/drl/' + id,
+    url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/' + id,
     method: 'get'
   })
 }

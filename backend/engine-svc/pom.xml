@@ -60,7 +60,7 @@
         </dependency>
         <dependency>
             <groupId>xyz.sally</groupId>
-            <artifactId>account-api</artifactId>
+            <artifactId>engine-api</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

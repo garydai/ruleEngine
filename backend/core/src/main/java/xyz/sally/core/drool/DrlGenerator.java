@@ -51,6 +51,13 @@ public class DrlGenerator {
                     "[when][]ne = !=\n" +
                     "[when][]and = &&\n" +
                     "[when][]or = ||\n" +
+                    "[when][]<= = <=\n" +
+                    "[when][]>= = >=\n" +
+                    "[when][]> = >\n" +
+                    "[when][]== = ==\n" +
+                    "[when][]!= = !=\n" +
+                    "[when][]and = &&\n" +
+                    "[when][]or = ||\n" +
                     "[when][]contains = contains\n" +
                     "[when][]notcontains = not contains\n" +
                     "[when]input = $input:%s()\n" +

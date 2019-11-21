@@ -1,6 +1,6 @@
 spring.datasource:
   #  项目数据库:
-  url: jdbc:mysql://localhost:3306/sally?useUnicode=true&characterEncoding=utf8&useSSL=false
+  url: jdbc:mysql://localhost:3306/sally_rule?useUnicode=true&characterEncoding=utf8&useSSL=false
   username: root
   password:
   type: com.alibaba.druid.pool.DruidDataSource
@@ -46,9 +46,8 @@ eureka:
       defaultZone: http://localhost:9999/eureka/
 
 server:
-  port: 8081
+  port: 8083
 sally:
-  engine-service-endpoint: http://localhost:8083
   account-service-endpoint: http://localhost:8081
 management:
   endpoints:
