@@ -71,7 +71,7 @@ public class DrlGenerator {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 
         InputMeta inputMeta = new InputMeta();
-        inputMeta.setRule(rule);
+        inputMeta.setRules(rule);
         inputMeta.setClassName(INPUT + uuid);
 
         String dslr = dslrGenerator.genDslr(inputMeta);

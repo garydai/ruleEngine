@@ -11,5 +11,5 @@ import lombok.Data;
 @Data
 public class InputMeta {
     public String className;
-    public JSONArray rule;
+    public JSONArray rules;
 }

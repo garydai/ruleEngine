@@ -1,6 +1,7 @@
 package xyz.sally.engine.service;
 
 import xyz.sally.common.api.Response;
+import xyz.sally.engineapi.domain.request.RuleRequest;
 import xyz.sally.engineapi.domain.response.RuleDtoResponse;
 
 /**
@@ -9,13 +10,9 @@ import xyz.sally.engineapi.domain.response.RuleDtoResponse;
  **/
 public interface RuleService {
 
-    public Response insertRule();
+    public Response insertRule(RuleRequest ruleRequest) throws Exception;
 
-    /**
-     * 根据id查找rule
-     *
-     * @param id
-     * @return
-     */
-    public RuleDtoResponse findRuleById(Integer id);
+    public RuleDtoResponse findLastRule();
+
+    public Response saveRuleById(Integer id, RuleRequest ruleRequest) throws Exception;
 }

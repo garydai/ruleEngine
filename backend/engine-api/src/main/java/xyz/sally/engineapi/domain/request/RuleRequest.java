@@ -16,15 +16,16 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LoginRequest {
+public class RuleRequest {
     /**
-     * 用户名
+     * 规则名
+     */
+    //@NotBlank
+    private String name;
+    /**
+     * 规则
      */
     @NotBlank
-    private String username;
-    /**
-     * 密码
-     */
-    @NotBlank
-    private String password;
+    private String input;
+
 }

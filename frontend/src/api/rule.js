@@ -39,8 +39,8 @@ export function getVersionHistory(id, envId) {
 }
 
 // todo refine
-export function updateRule(id, data) {
-  return request.formPost(process.env.GATEWAY_API + '/drl/update/' + id, data)
+export function insertRule(data) {
+  return request.jsonPost(process.env.GATEWAY_API + '/engine-service/sally/v1/rule', data)
 }
 
 export function addRule(data) {
@@ -66,6 +66,13 @@ export function activateRule(data) {
 export function getDrl(id) {
   return request({
     url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/' + id,
+    method: 'get'
+  })
+}
+
+export function getLatestRule(id) {
+  return request({
+    url: process.env.GATEWAY_API + '/engine-service/sally/v1/rule/latest',
     method: 'get'
   })
 }

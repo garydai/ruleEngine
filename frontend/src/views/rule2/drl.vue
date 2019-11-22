@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { getDrl, addRule, updateRule } from '@/api/rule'
+import { getLatestRule, insertRule } from '@/api/rule'
 import { listVariable } from '@/api/variable'
 import { clone } from '@/utils/util'
 const constant = require('@/utils/constant')
@@ -105,6 +105,7 @@ export default {
       },
       list: [],
       variables: [],
+      variablesMap: {},
       // todo refine
       listDisplay: [],
       mapper: {}, // chinese->english
@@ -141,35 +142,35 @@ export default {
     fetchData() {
       listVariable().then(response => {
         this.variables = response.data.list
-        var mock = '{"ver":1,"rules":[{"name":"联系方式中选取的相应APP是否在手机上(whatsapp、facebook、twitter、instagram)","rule":[{"l":"age","o":">","r":"1","r_t":"int"},{"l":"","o":"or","r":"","r_t":""},{"l":"age","o":"<","r":"10","r_t":"int"}]}],"expression":{"coarse":"or","fine":[]},"variables":["facebookOnPhone","whatsappOnPhone","twitterOnPhone","instagramOnPhone","loanAppCount","callTime1to5Pct","callLogPhones","homePhone","relativePhone","contactPhones","homeCity","workCity","positiveSmsCount"]}'
-        var i = JSON.parse(mock)
-        this.list = i.rules
-        console.log(i.rules)
-        if (Object.keys(this.$route.query).indexOf('id') === -1) {
-          return
+        // if (Object.keys(this.$route.query).indexOf('id') === -1) {
+        //   return
+        // }
+        for (var i in this.variables) {
+          this.variablesMap[this.variables[i].name] = this.variables[i].type
         }
+        console.log(this.variablesMap)
         this.loading = true
-        getDrl(1).then(response => {
+        getLatestRule().then(response => {
           this.rule = response.data
           var input = JSON.parse(response.data.input)
           this.hitRadio = input.expression.coarse
           this.flow = input.expression.fine
           this.list = input.rules
-          this.list.forEach(function(element) {
-            element.name = element.name.replace(/^"(.*)"$/, '$1')
-            element.rule.forEach(function(ele) {
-              if (ele.l in this.mapper) {
-                ele.l = this.mapper[ele.l]
-              }
-              if (ele.o in this.mapper) {
-                ele.o = this.mapper[ele.o]
-              }
-              if ((ele.r_t === 'v' || ele.r_t === 'Boolean') && ele.r in this.mapper) {
-                ele.r = this.mapper[ele.r]
-              }
-              ele.r = ele.r.replace(/^"(.*)"$/, '$1')
-            }, this)
-          }, this)
+          // this.list.forEach(function(element) {
+          //   element.name = element.name.replace(/^"(.*)"$/, '$1')
+          //   element.rule.forEach(function(ele) {
+          //     if (ele.l in this.mapper) {
+          //       ele.l = this.mapper[ele.l]
+          //     }
+          //     if (ele.o in this.mapper) {
+          //       ele.o = this.mapper[ele.o]
+          //     }
+          //     if ((ele.r_t === 'v' || ele.r_t === 'Boolean') && ele.r in this.mapper) {
+          //       ele.r = this.mapper[ele.r]
+          //     }
+          //     ele.r = ele.r.replace(/^"(.*)"$/, '$1')
+          //   }, this)
+          // }, this)
         }).finally(() => {
           this.loading = false
         })
@@ -191,32 +192,22 @@ export default {
       }
       var valid = true
       var error = ''
-      var variables = {}
-      var variablesMap = {}
       listCopy.forEach(function(element) {
         if (element.name === '') {
           valid = false
         }
         var rule = element.rule
-        var v = []
         rule.forEach(function(element, index) {
-          if (element.l in this.mapper) {
-            element.l = this.mapper[element.l]
+          console.log(element)
+          console.log(this.variablesMap)
+          if (element.l !== '') {
+            element.r_t = this.variablesMap[element.l]
           }
-          if (element.o in this.mapper) {
-            element.o = this.mapper[element.o]
-          }
-          if (element.r_t !== 'v' && element.r !== '') {
-            element.r_t = this.variables[element.l].type.replace('List.', '') // 非variable, 类型同left
-          }
-          if (element.r_t === 'v' || element.r_t === 'Boolean') {
-            element.r = this.mapper[element.r]
-          }
-          if (element.r_t.indexOf('String') !== -1) {
-            element.r = '\"' + element.r + '\"'
-          } else if (element.r !== '' && element.r[0] === '"' && element.r[element.r.length - 1] === '"') {
-            element.r = element.r.replace(/^"(.*)"$/, '$1')
-          }
+          // if (element.r_t.indexOf('string') !== -1) {
+          //   element.r = '\"' + element.r + '\"'
+          // } else if (element.r !== '' && element.r[0] === '"' && element.r[element.r.length - 1] === '"') {
+          //   element.r = element.r.replace(/^"(.*)"$/, '$1')
+          // }
 
           if (index % 2 === 0) {
             valid = (element.l !== '' && element.o !== '' && element.r !== '')
@@ -224,23 +215,8 @@ export default {
           if (index % 2 === 1) {
             valid = (element.o !== '')
           }
-
-          if (element.l !== '') {
-            if (!this.push(variables, variablesMap, element.l)) {
-              error = '变量缺失'
-              return
-            }
-            this.pushRuleVariable(v, element.l)
-          }
-          if (element.r_t === 'v') {
-            if (!this.push(variables, variablesMap, element.r)) {
-              error = '变量缺失'
-              return
-            }
-            this.pushRuleVariable(v, element.r)
-          }
+          console.log(element)
         }, this)
-        element.detail.variable.members = v
         if (rule.length % 2 === 0) {
           valid = false
         }
@@ -253,37 +229,15 @@ export default {
         this.$message(error)
         return
       }
-      result.variables = variables
+      console.log(result)
+      console.log(JSON.stringify(result))
+      // result.variables = variables
       result.expression.coarse = this.hitRadio
       result.expression.fine = this.flow
-      if (this.rule && this.rule.id) {
-        updateRule(this.$route.query.id, { input: JSON.stringify(result), id: this.rule.id, name: this.rule.name }).then(response => {
-          this.$message('保存成功')
-          this.fetchData()
-        })
-      } else {
-        addRule({ input: JSON.stringify(result), name: this.rule.name, sceneId: this.$route.query.sceneId }).then(response => {
-          this.$router.push('/engine/rule?sceneId=' + this.$route.query.sceneId)
-        })
-      }
-    },
-    pushRuleVariable(v, value) {
-      if (value !== 'null' && (this.variables[value].visibility === undefined || this.variables[value].visibility === 'false')) {
-        v.push(value)
-      }
-    },
-    push(variables, variablesMap, value) {
-      if (value === 'null') {
-        return true
-      }
-      if (!(value in variablesMap)) {
-        if (this.variables[value] === undefined) {
-          return false
-        }
-        variables[value] = this.variables[value].displayName
-        variablesMap[value] = 1
-      }
-      return true
+      insertRule({ input: JSON.stringify(result), id: 1, name: this.rule.name }).then(response => {
+        this.$message('保存成功')
+        this.fetchData()
+      })
     },
     handleAddRelation(listIdx) {
       var item = {
