@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.sally.common.api.Response;
 import xyz.sally.engine.service.RuleService;
+import xyz.sally.engineapi.domain.request.ExecuteRequest;
 import xyz.sally.engineapi.domain.request.RuleRequest;
 import xyz.sally.engineapi.domain.response.RuleDtoResponse;
 
@@ -28,5 +29,10 @@ public class RuleController {
     @PostMapping()
     Response insertRule(@RequestBody @Valid RuleRequest ruleRequest) throws Exception {
         return ruleService.insertRule(ruleRequest);
+    }
+
+    @PostMapping("/execute")
+    Response execute(@RequestBody @Valid ExecuteRequest executeRequest) throws Exception {
+        return ruleService.execute(executeRequest);
     }
 }

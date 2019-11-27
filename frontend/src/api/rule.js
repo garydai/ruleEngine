@@ -43,12 +43,12 @@ export function insertRule(data) {
   return request.jsonPost(process.env.GATEWAY_API + '/engine-service/sally/v1/rule', data)
 }
 
-export function addRule(data) {
-  return request.formPost(process.env.GATEWAY_API + '/drl/add', data)
+export function executeRule(data) {
+  return request.jsonPost(process.env.GATEWAY_API + '/engine-service/sally/v1/rule/execute', data)
 }
 
-export function executeRule(data) {
-  return request.formPost(process.env.TSHIRT_API + '/execute', data)
+export function addRule(data) {
+  return request.formPost(process.env.GATEWAY_API + '/drl/add', data)
 }
 
 export function testRule(data) {

@@ -1,5 +1,6 @@
 package xyz.sally.variablesapi.domain.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,8 @@ import java.util.List;
  * @create: 2019-11-07
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VariableDtoResponse extends Response {
     private HashMap<String, List<VariableDto>> data;
 

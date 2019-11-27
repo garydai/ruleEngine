@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import xyz.sally.engine.service.impl.RuleServiceImpl;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author daitechang
@@ -13,9 +16,10 @@ import org.springframework.context.annotation.ComponentScan;
  **/
 @SpringBootApplication
 @MapperScan("xyz.sally.engine.dao")
-@EnableFeignClients(basePackages = {"xyz.sally.engine"})
+@EnableFeignClients(basePackages = {"xyz.sally.variablesapi"})
 @EnableEurekaClient
 public class EngineApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(EngineApplication.class, args);
     }

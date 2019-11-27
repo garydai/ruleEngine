@@ -10,6 +10,10 @@ import lombok.Data;
  **/
 @Data
 public class InputMeta {
-    public String className;
-    public JSONArray rules;
+    public String uuid;
+    public String drl;
+    /**
+     * 输入变量
+     */
+    public JSONArray var;
 }

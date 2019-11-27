@@ -22,10 +22,10 @@ public class DslrGenerator {
                     "then result ;\n" +
                     "end\n";
 
-    public static String genDslr(InputMeta inputMeta) throws Exception {
+    public static String genDslr(JSONArray rules) throws Exception {
         StringBuilder sb = new StringBuilder();
 
-        for (Object item : inputMeta.rules) {
+        for (Object item : rules) {
             sb.append(String.format(DSLR_TEMPLATE, ((JSONObject) item).getString("name"),
                     getCondition(((JSONObject) item).getJSONArray("rule"))));
         }

@@ -30,11 +30,7 @@ import java.util.UUID;
  * @create: 2019-11-15
  **/
 @Slf4j
-@Component
 public class DrlGenerator {
-
-    @Autowired
-    DslrGenerator dslrGenerator;
 
     public static String PACKAGE_TEMPLATE =
             "package xyz.sally.core.rules.uuid%s\n" +
@@ -51,13 +47,6 @@ public class DrlGenerator {
                     "[when][]ne = !=\n" +
                     "[when][]and = &&\n" +
                     "[when][]or = ||\n" +
-                    "[when][]<= = <=\n" +
-                    "[when][]>= = >=\n" +
-                    "[when][]> = >\n" +
-                    "[when][]== = ==\n" +
-                    "[when][]!= = !=\n" +
-                    "[when][]and = &&\n" +
-                    "[when][]or = ||\n" +
                     "[when][]contains = contains\n" +
                     "[when][]notcontains = not contains\n" +
                     "[when]input = $input:%s()\n" +
@@ -65,19 +54,11 @@ public class DrlGenerator {
                     "[when]resultInit = $ruleResult:RuleResult()\n" +
                     "[then]result=$ruleResult.hitRule(drools.getRule().getName())";
 
-    private static final String INPUT = "xyz.sally.core.fact.input.Input";
+    public static final String INPUT = "xyz.sally.core.fact.input.Input";
 
-    public String genDrl(JSONArray rule) throws Exception {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-
-        InputMeta inputMeta = new InputMeta();
-        inputMeta.setRules(rule);
-        inputMeta.setClassName(INPUT + uuid);
-
-        String dslr = dslrGenerator.genDslr(inputMeta);
-
+    public static String genDrl(String dslr, String uuid) throws Exception {
         DrlParser parser = new DrlParser();
-        String drl = parser.getExpandedDRL(dslr, new StringReader(String.format(DSL, inputMeta.className)));
+        String drl = parser.getExpandedDRL(dslr, new StringReader(String.format(DSL, INPUT + uuid)));
 
         return String.format(PACKAGE_TEMPLATE, uuid) + drl;
     }

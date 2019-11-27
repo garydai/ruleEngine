@@ -31,6 +31,10 @@ public class Rule {
      */
     private String drl;
     /**
+     * dsrl
+     */
+    private String dsrl;
+    /**
      * uuid
      */
     private String uuid;
