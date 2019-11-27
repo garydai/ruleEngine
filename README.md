@@ -22,13 +22,28 @@
 
 vue
 
+http://127.0.0.1:7777
+
+```
+npm install
+npm run dev
+```
+
+##### skywalking
+
+apache-skywalking-apm-bin/bin/startup.sh
+
+http://127.0.0.1:8080
+
+![image-20191127141520708](https://github.com/garydai/ruleEngine/blob/master/image-20191127141520708.png)
+
 ### 规则引擎
 
 采用drool规则引擎
 
 #### drool
 
-根据自定义变量，动态生成drool的输入fact
+根据自定义变量，利用javaassist动态生成drool的输入fact
 
 #### 自定义dsl
 
