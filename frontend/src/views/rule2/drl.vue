@@ -70,7 +70,7 @@
           </div>        
         </el-card>
       </el-row>
-      <el-card class="box-card">
+      <!-- <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>命中规则</span>
         </div>
@@ -80,7 +80,7 @@
             <el-radio v-model="hitRadio" label="and">满足所有规则</el-radio>              
           </template>
         </div>
-      </el-card>
+      </el-card> -->
     </div>
   </div>
 </template>

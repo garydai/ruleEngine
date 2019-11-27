@@ -23,7 +23,7 @@
               <span>{{list[scope.$index].type}}</span>
             </template>
           </el-table-column>
-          <el-table-column align="right">
+          <!-- <el-table-column align="right">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -33,7 +33,7 @@
                 type="danger"
                 @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
             </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
       </div>
     </el-card>
