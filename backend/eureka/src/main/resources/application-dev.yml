@@ -4,8 +4,8 @@ server:
 #Eureka 相关配置
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
+    #service-url:
+    #  defaultZone: http://localhost:${server.port}/eureka/
     # 是否从其他的服务中心同步服务列表
     fetch-registry: false
     # 是否把自己作为服务注册到其他服务注册中心
