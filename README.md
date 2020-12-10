@@ -45,7 +45,7 @@ http://127.0.0.1:8080
 
 根据自定义变量，利用javaassist动态生成drool的输入fact
 
-#### 自定义dsl
+#### 自定义dsl语法
 
 ```
 [when][]lt = <
@@ -64,7 +64,7 @@ http://127.0.0.1:8080
 [then]result=$ruleResult.addRuleHit(drools.getRule().getName())
 ```
 
-输入dsrl
+输入dsrl（业务人员编写的规则）
 
 ```
 rule "test" 
