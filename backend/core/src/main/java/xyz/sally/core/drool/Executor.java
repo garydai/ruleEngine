@@ -1,6 +1,5 @@
 package xyz.sally.core.drool;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.io.ResourceType;
@@ -11,14 +10,9 @@ import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.internal.definition.KnowledgePackage;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import xyz.sally.core.fact.input.Inputbe2928c29edd46038d88b8ebbde2335c;
 import xyz.sally.core.po.InputMeta;
 import xyz.sally.core.po.RuleResult;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Field;
@@ -58,6 +52,8 @@ public class Executor {
                     break;
             }
         }
+
+        log.debug("fact: {}", object);
 
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 

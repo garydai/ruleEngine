@@ -108,6 +108,7 @@ public class RuleServiceImpl implements RuleService {
             variableMap.put(variableDto.getName(), variableDto);
         }
 
+        // 请求的变量
         JSONObject vars = JSONObject.parseObject(executeRequest.getVar());
         JSONArray varJsonArray = new JSONArray();
         for (Map.Entry<String, Object> entry : vars.entrySet()) {
@@ -123,6 +124,7 @@ public class RuleServiceImpl implements RuleService {
         InputMeta inputMeta = new InputMeta();
         inputMeta.setDrl(ruleDtoResponse.getData().getDrl());
         inputMeta.setUuid(ruleDtoResponse.getData().getUuid());
+        // todo 应该用drl里用到的变量生成input对象，否则请求的变量少于drl里的变量会报错
         inputMeta.setVar(varJsonArray);
 
         return new RuleResultResponse(RuleResultDto.builder().hitRules(Executor.execute(inputMeta).getHitRules()).build());
