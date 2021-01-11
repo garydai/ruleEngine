@@ -17,7 +17,7 @@
         <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
         <druid-version>1.1.9</druid-version>
-        <drools.version>7.0.0.Final</drools.version>
+        <drools.version>7.47.0.Final</drools.version>
         <fastjson-version>1.2.58</fastjson-version>
     </properties>
 
@@ -66,18 +66,18 @@
             </dependency>
 
             <!-- Structured logging -->
-            <dependency>
-                <groupId>structlog4j</groupId>
-                <artifactId>structlog4j-api</artifactId>
-                <version>1.0.0</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>structlog4j</groupId>-->
+<!--                <artifactId>structlog4j-api</artifactId>-->
+<!--                <version>1.0.0</version>-->
+<!--            </dependency>-->
 
             <!-- Optional JSON formatter -->
-            <dependency>
-                <groupId>structlog4j</groupId>
-                <artifactId>structlog4j-json</artifactId>
-                <version>1.0.0</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>structlog4j</groupId>-->
+<!--                <artifactId>structlog4j-json</artifactId>-->
+<!--                <version>1.0.0</version>-->
+<!--            </dependency>-->
 
             <!-- https://mvnrepository.com/artifact/io.sentry/sentry -->
             <dependency>

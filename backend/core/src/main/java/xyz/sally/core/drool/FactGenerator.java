@@ -4,20 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
-import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import xyz.sally.core.po.InputMeta;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.UUID;
-
-import static jdk.nashorn.internal.objects.NativeMath.log;
 
 /**
  * @author daitechang
@@ -44,7 +34,7 @@ public class FactGenerator {
         for (Object ob : inputMeta.getVar()) {
             addField(((JSONObject) ob).getString("name"), ((JSONObject) ob).getString("type"));
         }
-
+        ctClass.writeFile("core/target/classes");
         return ctClass.toClass();
 
     }
@@ -89,26 +79,26 @@ public class FactGenerator {
 //        System.out.println(object);
 //    }
 
-        public static void main (String[]args) throws Exception {
-            String s = new String("1");
-            s.intern();
-            String s2 = "1";
-            System.out.println(s == s2);
+    public static void main(String[] args) throws Exception {
+        String s = new String("1");
+        s.intern();
+        String s2 = "1";
+        System.out.println(s == s2);
 
-            String s3 = new String("1") + new String("1");
-            s3.intern();
-            String s4 = "11";
-            System.out.println(s3 == s4);
+        String s3 = new String("1") + new String("1");
+        s3.intern();
+        String s4 = "11";
+        System.out.println(s3 == s4);
 
-            String str1 = "abc";
-            String str2 = new String("def");
-            String str3 = "abc";
-            String str4 = str2.intern();
-            String str5 = "def";
-            System.out.println(str1 == str3);//true
-            System.out.println(str2 == str4);//false
-            System.out.println(str4 == str5);//true
+        String str1 = "abc";
+        String str2 = new String("def");
+        String str3 = "abc";
+        String str4 = str2.intern();
+        String str5 = "def";
+        System.out.println(str1 == str3);//true
+        System.out.println(str2 == str4);//false
+        System.out.println(str4 == str5);//true
 
 
-        }
     }
+}

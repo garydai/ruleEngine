@@ -11,6 +11,6 @@ eureka:
     # 是否从其他的服务中心同步服务列表
     fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
 
 
