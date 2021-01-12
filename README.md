@@ -43,7 +43,7 @@ http://127.0.0.1:8080
 
 #### drool
 
-根据自定义变量，利用javaassist动态生成drool的输入fact
+将变量值放入hashmap，当作drool的输入fact
 
 #### 自定义dsl语法
 
@@ -71,38 +71,43 @@ rule "test"
 when 
 resultInit 
 input 
-- sex >= 1 
+- this["sex"] >= 1 
 then result ;
 end
 rule "test2" 
 when 
 resultInit 
 input 
-- sex > 2  and  age < 12 
+- this["sex"] > 2  and  this["age"] < 12 
 then result ;
 end
+
 
 ```
 
 输出drl
 
 ```
-package xyz.sally.core.rules.uuid67974f6b3897482aa7776a4bdd643b05
+package xyz.sally.core.rules.uuiddcfdc76b4ed24e0a9bd79a86424fc903
 
 import xyz.sally.core.fact.*
 import xyz.sally.core.po.*
-rule "test" 
+import java.util.HashMap;
+import java.util.Map;rule "test" 
 when 
 $ruleResult:RuleResult() 
-$input:xyz.sally.core.fact.input.Input67974f6b3897482aa7776a4bdd643b05(sex  >=  1) 
+$map:HashMap(this["sex"]  >=  1) 
 then $ruleResult.hitRule(drools.getRule().getName()) ;
 end
 rule "test2" 
 when 
 $ruleResult:RuleResult() 
-$input:xyz.sally.core.fact.input.Input67974f6b3897482aa7776a4bdd643b05(sex  >  2  &&  age < 12) 
-then $ruleResult.hitRule(drools.getRule().getName()) ;
+$map:HashMap(this["sex"] > 2  &&  this["age"]  <  12) 
+then 
+System.out.println($map);
+$ruleResult.hitRule(drools.getRule().getName()) ;
 end
+
 
 ```
 
