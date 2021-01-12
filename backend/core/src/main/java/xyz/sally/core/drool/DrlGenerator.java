@@ -16,7 +16,9 @@ public class DrlGenerator {
             "package xyz.sally.core.rules.uuid%s\n" +
                     "\n" +
                     "import xyz.sally.core.fact.*\n" +
-                    "import xyz.sally.core.po.*\n";
+                    "import xyz.sally.core.po.*\n" +
+                    "import java.util.HashMap;\n" +
+                    "import java.util.Map;\n";
 
     public static String DSL =
             "[when][]lt = <\n" +
@@ -29,8 +31,8 @@ public class DrlGenerator {
                     "[when][]or = ||\n" +
                     "[when][]contains = contains\n" +
                     "[when][]notcontains = not contains\n" +
-                    "[when]input = $input:%s()\n" +
-                    "[when]- {field:[\\w\\.]+} {operator} {value:.+} = {field} {operator} {value}\n" +
+                    "[when]input = $map:HashMap()\n" +
+                    "[when]- {field:.+} {operator} {value:.+} = {field} {operator} {value}\n" +
                     "[when]resultInit = $ruleResult:RuleResult()\n" +
                     "[then]result=$ruleResult.hitRule(drools.getRule().getName())";
 

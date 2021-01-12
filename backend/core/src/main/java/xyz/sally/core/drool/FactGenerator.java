@@ -34,7 +34,7 @@ public class FactGenerator {
         for (Object ob : inputMeta.getVar()) {
             addField(((JSONObject) ob).getString("name"), ((JSONObject) ob).getString("type"));
         }
-        ctClass.writeFile("core/target/classes");
+        ctClass.writeFile("src/main/resources");
         return ctClass.toClass();
 
     }

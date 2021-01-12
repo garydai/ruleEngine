@@ -27,17 +27,20 @@ public class VariableServiceImpl implements VariableService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
     public List<VariableDto> listVariable() {
         List<Variable> variables = variableDao.listVariable();
         return modelMapper.map(variables, new TypeToken<List<VariableDto>>() {
         }.getType());
     }
 
+    @Override
     public Response addVariable(AddVariableRequest addVariableRequest) {
         return variableDao.addVariable(modelMapper.map(addVariableRequest, VariableDto.class)) ?
                 new Response(ResponseCode.SUCCESS) : new Response(ResponseCode.FAIL);
     }
 
+    @Override
     public Response deleteVariable(Integer id) {
         return variableDao.deleteById(id) == 1 ? new Response(ResponseCode.SUCCESS) : new Response(ResponseCode.FAIL);
     }

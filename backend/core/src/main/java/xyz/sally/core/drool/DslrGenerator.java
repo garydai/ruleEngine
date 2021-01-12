@@ -2,10 +2,6 @@ package xyz.sally.core.drool;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.stereotype.Component;
-import xyz.sally.core.po.InputMeta;
-
-import java.util.UUID;
 
 /**
  * @author daitechang
@@ -40,7 +36,11 @@ public class DslrGenerator {
             JSONObject object = (JSONObject) item;
             String left = object.getString("l");
             String right = object.getString("r");
-            sb.append(String.format("%s %s %s ", left, object.get("o"), right));
+            if (!"".equals(left)) {
+                sb.append(String.format("this[\"%s\"] %s %s ", left, object.get("o"), right));
+            } else {
+                sb.append(String.format("%s %s %s ", left, object.get("o"), right));
+            }
         }
         return sb.toString();
     }
